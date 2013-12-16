@@ -2,9 +2,10 @@
 \alias{gaga}
 \title{Genetic Algorithm for Generating Ancestry (GAGA)}
 \usage{
-gaga(observations, annotations, min_number_of_clones, max_number_of_clones,
-  pop_size = 100, mutation_rate = 0.8, iterations = 1000,
-  parthenogenesis = 2, nroot = 0, contamination = 0)
+gaga(observations, annotations, number_of_clones, pop_size = 100,
+  mutation_rate = 0.8, iterations = 1000,
+  stoppingCriteria = round(iterations/10), parthenogenesis = 2, nroot = 0,
+  contamination = 0, seed)
 }
 \arguments{
   \item{observations}{Observation data frame.  Rows
@@ -15,11 +16,8 @@ gaga(observations, annotations, min_number_of_clones, max_number_of_clones,
   \item{annotations}{Annotation data frame.  Each row
   corresponds to a mutation ??????}
 
-  \item{min_number_of_clones}{The minimum number of clones
-  to be considered}
-
-  \item{max_number_of_clones}{The maximum number of clones
-  to be considered}
+  \item{number_of_clones}{The integer number of clones to
+  be considered}
 
   \item{pop_size}{The number of individuals in each
   generation}
@@ -30,6 +28,10 @@ gaga(observations, annotations, min_number_of_clones, max_number_of_clones,
   \item{iterations}{The number of generations that will
   occur}
 
+  \item{stoppingCriteria}{The number of consecutive
+  generations without improvement that will stop the
+  algorithm. Default value is 10\% of iterations.}
+
   \item{parthenogenesis}{The number of best-fitness
   individuals allowed to survive each generation}
 
@@ -38,10 +40,13 @@ gaga(observations, annotations, min_number_of_clones, max_number_of_clones,
 
   \item{contamination}{Is the input contaminated?  If set
   to 1, an extra clone is created in which to place
-  contaminants}
+  inferred contaminants}
+
+  \item{seed}{An integer vector to set the random number
+  generator.  Allows runs of the algorithm to be repeated}
 }
 \value{
-Description of the returned object
+Returns an object of class ga \code{\link{ga-class}}
 }
 \description{
 Use a genetic algorithm to find the relationships between
@@ -50,10 +55,15 @@ the phylogenetic relationship between them and the
 proportion of each clone that each sample is composed of.
 }
 \examples{
-gaga("BYB1-G07_pruned.txt", "BYB-G07_output_pruned_contaminated", "BYB1-G07_anno_pruned.txt", 6, 6, iterations=10, contamination=1)
+# Load the included synthetic example data
+data("gaga_synthetic_data","gaga_synthetic_data_annotation")
+x=gaga(gaga_synthetic_data, gaga_synthetic_data_annotation, number_of_clones=6, iterations=100)
 }
 \author{
-Alex Murison and Christopher Wardell
-\email{Alexander.Murison@icr.ac.uk}
+Alex Murison \email{Alexander.Murison@icr.ac.uk} and
+Christopher Wardell \email{Christopher.Wardell@icr.ac.uk}
+}
+\seealso{
+\code{\link{ga-class}}, \code{\link{ga}}
 }
 

@@ -15,60 +15,34 @@
 #' @param observations              Observation data frame.  Rows represent the proportion of cells containing
 #' a mutation, columns represent discrete samples separated by time or space
 #' @param annotations               Annotation data frame.  Each row corresponds to a mutation ??????
-#' @param min_number_of_clones      The minimum number of clones to be considered
-#' @param max_number_of_clones      The maximum number of clones to be considered
+#' @param number_of_clones          The integer number of clones to be considered
 #' @param pop_size                  The number of individuals in each generation
 #' @param mutation_rate             The likelihood of each individual undergoing mutation per generation
 #' @param iterations                The number of generations that will occur
+#' @param stoppingCriteria          The number of consecutive generations without improvement that will stop the algorithm.
+#' Default value is 10\% of iterations.
 #' @param parthenogenesis           The number of best-fitness individuals allowed to survive each generation
 #' @param nroot                     Number of roots the phylogeny is expected to have
-#' @param contamination             Is the input contaminated?  If set to 1, an extra clone is created in which to place contaminants
-#' @return Description of the returned object
+#' @param contamination             Is the input contaminated?  If set to 1, an extra clone is created in which to place inferred contaminants
+#' @param seed                      An integer vector to set the random number generator.  Allows runs of the algorithm to be repeated
+#' @return Returns an object of class ga \code{\link{ga-class}}
 #' @export
 # @seealso \code{\link{fermat.test}}  #### other functions; e.g. gaga report output
 # @references GAGA paper here!
-#' @author Alex Murison and Christopher Wardell \email{Alexander.Murison@@icr.ac.uk}
+#' @author Alex Murison \email{Alexander.Murison@@icr.ac.uk} and Christopher Wardell \email{Christopher.Wardell@@icr.ac.uk}
+#' @seealso \code{\link{ga-class}}, \code{\link{ga}}
 #' @examples
-#' gaga("BYB1-G07_pruned.txt", "BYB-G07_output_pruned_contaminated", "BYB1-G07_anno_pruned.txt", 6, 6, iterations=10, contamination=1)
+#' # Load the included synthetic example data
+#' data("gaga_synthetic_data","gaga_synthetic_data_annotation")
+#' x=gaga(gaga_synthetic_data, gaga_synthetic_data_annotation, number_of_clones=6, iterations=100)
 
-gaga<-function(observations, annotations, min_number_of_clones, max_number_of_clones, 
-               pop_size=100, mutation_rate=0.8, iterations=1000, parthenogenesis=2, nroot=0, contamination=0) {
+gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutation_rate=0.8, iterations=1000,
+               stoppingCriteria=round(iterations/10), parthenogenesis=2,nroot=0, contamination=0,seed) {
 
+  
   ##############################
   ## Start internal functions ##
   ##############################
-  
-  ## Generates a phylogeny with one and only one root node
-  new_phylo<-function(nroot) {
-    inp<-vector(length=number_of_clones)
-    
-    if (nroot==1) { 
-      i<-1
-    } else { 
-      i<-round(runif(1,0.5, number_of_clones+0.49)) 
-    }
-    
-    inp[1:i]<-0
-    
-    last_gen_start<-1
-    last_gen_end<-i
-    spaces_left<-number_of_clones-i
-    
-    while (spaces_left > 0) {
-      
-      length_next_gen<-round(runif(1,0.5, spaces_left+0.49))
-      current_sample<-sample(rep(last_gen_start:last_gen_end, number_of_clones))
-      #<-sample(last_gen_start:last_gen_end, size=number_of_clones, replace=TRUE)
-      inp[(last_gen_end+1):(last_gen_end+length_next_gen)]<-current_sample[1:length_next_gen]
-      last_gen_start<-last_gen_end+1
-      last_gen_end<-last_gen_end+length_next_gen
-      spaces_left<-spaces_left-length_next_gen
-      
-    }
-    ## /end of new_phylo
-    
-    return(inp)
-  }
   
   ## Crossover as gabin_SpCrossover but do not select a crossover point within a phylogeny
   phylo_cross<-function(object, parents) {
@@ -99,40 +73,12 @@ gaga<-function(observations, annotations, min_number_of_clones, max_number_of_cl
   ## /end of phylo_cross
   
   
-  ## Creates a matrix where rows indicate the clones in which a mutation must occur.
-  ## Identify the root nodes, set these to have 1 in the diagonal corresponding to their column
-  ## For each root node, find their children, copy the parents column and add 1 to their diagonal
-  ## find the children of those children and repeat until matrix constructed
-  generate_phylo_matrix<-function(input) {
-    pmat<-matrix(rep(0, (number_of_clones*number_of_clones)), ncol=number_of_clones, byrow=TRUE)
-    next_generation<-which(input==0)
-    new_next_generation<-c()  
-    for (node in next_generation) {
-      pmat[node,node]<-1
-      new_next_generation<-c(node, new_next_generation) 
-    }
-    next_generation<-new_next_generation
-    while (length(next_generation>0)) {
-      new_next_generation<-c() 
-      for (i in next_generation) {
-        getme<-which(input==i)
-        for (j in getme) {
-          pmat[,j]<-pmat[,i]
-          pmat[j,j]<-1
-          new_next_generation<-c(j, new_next_generation) 
-        }
-      }
-      next_generation<-new_next_generation
-    }
-    return(pmat)
-  }
-  # /end of generate_phylo_matrix
   
   ## Calculate fitness of phylogeny
   fit_phylogeny<-function(input) {
     
     ### Work out the phylogeny matrix
-    dep_mat<-generate_phylo_matrix(input[1:number_of_clones])
+    dep_mat<-generate_phylo_matrix(input[1:number_of_clones],number_of_clones)
     
     ### Calculate the proportions of each clone in each case
     proportion_matrix<-matrix(input[(number_of_clones+1):((number_of_cases*pseudo_number_of_clones)+number_of_clones)], 
@@ -195,7 +141,7 @@ gaga<-function(observations, annotations, min_number_of_clones, max_number_of_cl
     new_individual<-vector(length=how_big)
     
     #Assign parents from 0 to number of clones
-    new_individual[1:number_of_clones]<-new_phylo(nroot)
+    new_individual[1:number_of_clones]<-new_phylo(nroot,number_of_clones)
     # assign proportions between 0 and 5
     new_individual[(number_of_clones+1):(number_of_clones+clo_cas)]<-round(runif(clo_cas,0,5))
     # assign mutation first appears as 1:number of clones
@@ -240,7 +186,7 @@ gaga<-function(observations, annotations, min_number_of_clones, max_number_of_cl
     else if (what == 1 ) {
       # Mutate parents
       
-      victim_ready[1:number_of_clones]<-new_phylo(nroot)
+      victim_ready[1:number_of_clones]<-new_phylo(nroot,number_of_clones)
     }
     else if (what == 2 ) {
       # Mutate a first_appears call
@@ -270,43 +216,65 @@ gaga<-function(observations, annotations, min_number_of_clones, max_number_of_cl
   library(png)
   
   # Get Observation File and associated values
-  #observation_matrix<-read.table(observations, sep="\t", stringsAsFactors=FALSE, header=T)
   observation_matrix<-observations
   number_of_mutations<-as.numeric(nrow(observation_matrix))
   number_of_cases<-as.numeric(ncol(observation_matrix))
-  
-    
-  for (number_of_clones in min_number_of_clones:max_number_of_clones) {
-    
-    if (contamination == 1) {
-      pseudo_number_of_clones<-number_of_clones+1
-      numBits<-(pseudo_number_of_clones*number_of_cases)+(number_of_mutations+number_of_clones)    
-    } else {
-      numBits<-(number_of_clones*number_of_cases)+(number_of_mutations+number_of_clones)
-      pseudo_number_of_clones<-number_of_clones
-    }
-    
-    ### Compile the genetic algorithm - this increases speed significantly
-    setCompilerOptions(suppressAll=TRUE)
-    ga=cmpfun(ga)
-    
-    ### RUN THE GENETIC ALGORITHM
-    goo<-ga(type="binary", 
-            fitness = fit_phylogeny, 
-            population = generate_phylogeny_aware_population,
-            selection = gabin_tourSelection,
-            crossover = phylo_cross,
-            mutation = phylo_mutate,
-            popSize = pop_size,
-            nBits = numBits,
-            pmutation=mutation_rate,
-            maxiter=iterations,
-            elitism = parthenogenesis
-    )
-    
-    return(goo)
-    
+
+  if (contamination == 1) {
+    pseudo_number_of_clones<-number_of_clones+1
+    numBits<-(pseudo_number_of_clones*number_of_cases)+(number_of_mutations+number_of_clones)    
+  } else {
+    numBits<-(number_of_clones*number_of_cases)+(number_of_mutations+number_of_clones)
+    pseudo_number_of_clones<-number_of_clones
   }
+  
+  ### Compile the genetic algorithm - this increases speed significantly
+  setCompilerOptions(suppressAll=TRUE)
+  ga=cmpfun(ga)
+  
+  ## Generate seed if missing
+  if (!missing(seed)){
+    set.seed(seed)
+  }
+  
+  ### RUN THE GENETIC ALGORITHM
+  goo<-ga(type="binary", 
+          fitness = fit_phylogeny, 
+          population = generate_phylogeny_aware_population,
+          selection = gabin_tourSelection,
+          crossover = phylo_cross,
+          mutation = phylo_mutate,
+          popSize = pop_size,
+          nBits = numBits,
+          pmutation=mutation_rate,
+          maxiter=iterations,
+          elitism = parthenogenesis,
+          run=stoppingCriteria,
+          seed=seed
+  )
+  ## Add annotation to the object
+  goo@names=as.character(annotations$names)
+    
+  ## Add number of clones to min slot.  Note that this is an incorrect use of the slot
+  goo@min = number_of_clones
+  ## Add number of cases (e.g. timepoints) to max slot.  Note that this is an incorrect use of the slot
+  #goo@max= pseudo_number_of_clones
+  goo@max= number_of_cases
+
+  ## Define a new class and create the object
+  #setClass("gaga", contains="ga",slots = c(id = "character"))
+  
+  
+  #object <- new("ga", call = call, type = type, min = min, 
+  #              max = max, nBits = nBits, names = if (is.null(names)) 
+  #                character()
+  #              else names, popSize = popSize, iter = 0, run = 1, maxiter = maxiter, 
+  #              suggestions = suggestions, population = matrix(), elitism = elitism, 
+  #              pcrossover = pcrossover, pmutation = pmutation, fitness = Fitness, 
+  #              best = bestEval, mean = meanEval, bestSol = bestSol)
+  
+  
+  return(goo)
 
   #######################
   ## End of main logic ##
