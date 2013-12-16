@@ -3,7 +3,9 @@ Type: Package
 Title: Genetic Algorithms for Generating Ancestry
 Version: 0.2
 Date: 2013-12-13
-Authors@R: c(person("Alex", "Murison", role = c("aut", "cre")),person("Christopher", "Wardell", role = c("aut", "cre")))
-Maintainer: Alexander Murison <Alexander.Murison@icr.ac.uk>
-Description: Using genetic algorithms to determine the relationship between clones in cancer samples.
+Authors@R: c(person("Alex", "Murison", role = c("aut",
+    "cre"),email="Alexander.Murison@icr.ac.uk"),person("Christopher",
+    "Wardell", role = c("aut", "cre"),email="Christopher.Wardell@icr.ac.uk"))
+Description: Using genetic algorithms to determine the relationship between
+    clones in cancer samples.
 License: GPL-3
