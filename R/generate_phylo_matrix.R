@@ -1,4 +1,3 @@
-
 ## Creates a matrix where rows indicate the clones in which a mutation must occur.
 ## Identify the root nodes, set these to have 1 in the diagonal corresponding to their column
 ## For each root node, find their children, copy the parents column and add 1 to their diagonal
@@ -26,4 +25,4 @@ generate_phylo_matrix<-function(input,number_of_clones) {
   }
   return(pmat)
 }
-# /end of generate_phylo_matrix
+## /end of generate_phylo_matrix

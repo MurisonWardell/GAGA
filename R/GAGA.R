@@ -1,32 +1,40 @@
 #' Genetic Algorithm for Generating Ancestry (GAGA)
 #' 
-#' Use a genetic algorithm to find the relationships between the values in an input file.  Generates number of clones, the
-#' phylogenetic relationship between them and the proportion of each clone that each sample is composed of.
+#' Use a genetic algorithm to find the relationships between the values in an input file - the package was written to deal with single
+#' nucleotide variants (SNVs) in mixtures of cancer cells, but it will work with any mixture.  It will calculate appropriate phylogenetic
+#' relationships between clones them and the proportion of each clone that each sample is composed of.  For detailed usage, please
+#' read the accompanying vignette.
 #' 
-#' @param observations              Observation data frame.  Rows represent the proportion of cells containing
-#' a mutation, columns represent discrete samples separated by time or space
-#' @param annotations               Annotation data frame.  Each row corresponds to a mutation ??????
-#' @param number_of_clones          The integer number of clones to be considered
+#' @param observations              Observation data frame where each row represents an SNV and each column (except the first) represents
+#' a discrete sample separated by time or space.  Note that the first row is a header containing the name of each sample and the first
+#' column must contain a unique name for each SNV.  Every value must be a proportion between 0 and 1
+#' @param number_of_clones          An integer number of clones to be considered
 #' @param pop_size                  The number of individuals in each generation
 #' @param mutation_rate             The likelihood of each individual undergoing mutation per generation
-#' @param iterations                The number of generations that will occur
+#' @param iterations                The maximum number of generations to run
 #' @param stoppingCriteria          The number of consecutive generations without improvement that will stop the algorithm.
 #' Default value is 10\% of iterations.
 #' @param parthenogenesis           The number of best-fitness individuals allowed to survive each generation
 #' @param nroot                     Number of roots the phylogeny is expected to have
 #' @param contamination             Is the input contaminated?  If set to 1, an extra clone is created in which to place inferred contaminants
-#' @return Returns an object of class ga \code{\link{ga-class}}
+#' @details Do we need a details section?
+#' @return Returns an object of class ga \code{\link{ga-class}}.  Note that the number of clones and number of cases are 
+#' stored in the unused min and max slots of the output object.
 #' @export
-# @seealso \code{\link{fermat.test}}  #### other functions; e.g. gaga report output
 # @references GAGA paper here!
 #' @author Alex Murison \email{Alexander.Murison@@icr.ac.uk} and Christopher Wardell \email{Christopher.Wardell@@icr.ac.uk}
-#' @seealso \code{\link{ga-class}}, \code{\link{ga}}
+#' @seealso \code{\link{ga-class}}, \code{\link{ga}}, \code{\link{gagaReport}}
 #' @examples
-#' # Load the included synthetic example data
-#' data("gaga_synthetic_data","gaga_synthetic_data_annotation")
-#' x=gaga(gaga_synthetic_data, gaga_synthetic_data_annotation, number_of_clones=6, iterations=100)
+#' ## Load the included synthetic example data
+#' data("gaga_synthetic_data")
+#' 
+#' ## Run gaga using 6 clones and default parameters
+#' solution=gaga(gaga_synthetic_data, number_of_clones=6)
+#' 
+#' ## Output the solution in the current working directory
+#' gagaReport(gaga_synthetic_data,solution)
 
-gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutation_rate=0.8, iterations=1000,
+gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, iterations=1000,
                stoppingCriteria=round(iterations/10), parthenogenesis=2,nroot=0, contamination=0) {
 
   
@@ -200,10 +208,10 @@ gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutati
   
   library(GA)
   library(compiler)
-
   
-  # Get Observation File and associated values
-  observation_matrix<-observations
+  ## Get Observation File and associated values
+  ## We ignore the first column, as it is the object names
+  observation_matrix<-observations[,2:ncol(observations)] 
   number_of_mutations<-as.numeric(nrow(observation_matrix))
   number_of_cases<-as.numeric(ncol(observation_matrix))
 
@@ -234,12 +242,11 @@ gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutati
           run=stoppingCriteria
   )
   ## Add annotation to the object
-  goo@names=as.character(annotations$names)
+  goo@names=as.character(observations[,1])
     
   ## Add number of clones to min slot.  Note that this is an incorrect use of the slot
   goo@min = number_of_clones
   ## Add number of cases (e.g. timepoints) to max slot.  Note that this is an incorrect use of the slot
-  #goo@max= pseudo_number_of_clones
   goo@max= number_of_cases
 
   ## Define a new class and create the object

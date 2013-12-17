@@ -1,34 +1,73 @@
 \name{gagaReport}
 \alias{gagaReport}
-\title{View and create output of GAGA objects}
+\title{View solutions contained within GAGA output}
 \usage{
 gagaReport(gagaInput, gagaOutput, outType = "complete", yRange = c(-250, 0),
   output_file_prefix = "")
 }
 \arguments{
-  \item{gagaInput}{Raw data put into gaga()}
+  \item{gagaInput}{Raw data analysed by gaga()}
 
   \item{gagaOutput}{Object of class ga produced by gaga()}
 
-  \item{outType}{Type of output desired}
+  \item{outType}{Type of output desired - must be one of
+  the following:
+  "complete","fitness","heatmap","phylogeny","proportion"}
 
   \item{yRange}{Y-axis range when plotting fitness of
-  individuals}
+  individuals.  Default is c(-250,0)}
 
-  \item{output_file_prefix}{Optional prefix for output
+  \item{output_file_prefix}{Optional prefix for all output
   files}
 }
 \value{
-Description of the returned object
+Nothing is returned.
 }
 \description{
-Description here
+After running gaga() on data, this function provides a
+convenient way to view the solutions and also export them
+as separate text files and images.  For detailed usage,
+please read the accompanying vignette.
+}
+\details{
+This method reports data for the fittest individual; in the
+event of there being multiple individuals with identical
+fitness, up to five individuals will be reported.  This
+function's output is governed by the outType argument. All
+options except for the default "complete" value result in
+plotting the desired output to the current R session. When
+outType=="complete", the following output is created for
+each individual: the full length string, the phylogeny
+matrix, the proportion matrix, the presence matrix, a
+heatmap of the raw data with the assigned clones as
+coloured bars at the side, a stacked barplot showing the
+proportion of each clone at each timepoint and a plot
+showing the phylogenetic relationship between the clones.
+Note that the colours of the clones are consistent across
+all plots and that the contamination clone (if present) is
+always the last clone.  Also produced is a plot
+illustrating the change in fitness as the generations
+evolved.
 }
 \examples{
-gagaReport(blah,UNKNOWN)
+## Load the included synthetic example data
+data("gaga_synthetic_data")
+
+## Run gaga using 6 clones and default parameters
+solution=gaga(gaga_synthetic_data, number_of_clones=6)
+
+## Output the solution in the current working directory
+gagaReport(gaga_synthetic_data,solution)
+
+## View only the phylogenetic relationship between clones and produce no files
+gagaReport(gaga_synthetic_data,solution,outType="phylogeny")
 }
 \author{
-Alex Murison and Christopher Wardell
-\email{Alexander.Murison@icr.ac.uk}
+Alex Murison \email{Alexander.Murison@icr.ac.uk} and
+Christopher Wardell \email{Christopher.Wardell@icr.ac.uk}
+}
+\seealso{
+\code{\link{ga-class}}, \code{\link{ga}},
+\code{\link{gagaReport}}
 }
 
