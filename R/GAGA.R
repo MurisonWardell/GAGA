@@ -1,12 +1,3 @@
-###############################################################################
-## Genetic Algorithm for Generating Ancestry  (GAGA)                         ##
-## Alex Murison & Christopher Wardell                                        ##
-## Institute of Cancer Research, Sutton, London, UK                          ##
-## testing Version 0.2 - 13/12/2013                                          ##
-## e-mail: Alexander.Murison@icr.ac.uk                                       ##
-###############################################################################
-
-
 #' Genetic Algorithm for Generating Ancestry (GAGA)
 #' 
 #' Use a genetic algorithm to find the relationships between the values in an input file.  Generates number of clones, the
@@ -24,7 +15,6 @@
 #' @param parthenogenesis           The number of best-fitness individuals allowed to survive each generation
 #' @param nroot                     Number of roots the phylogeny is expected to have
 #' @param contamination             Is the input contaminated?  If set to 1, an extra clone is created in which to place inferred contaminants
-#' @param seed                      An integer vector to set the random number generator.  Allows runs of the algorithm to be repeated
 #' @return Returns an object of class ga \code{\link{ga-class}}
 #' @export
 # @seealso \code{\link{fermat.test}}  #### other functions; e.g. gaga report output
@@ -37,7 +27,7 @@
 #' x=gaga(gaga_synthetic_data, gaga_synthetic_data_annotation, number_of_clones=6, iterations=100)
 
 gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutation_rate=0.8, iterations=1000,
-               stoppingCriteria=round(iterations/10), parthenogenesis=2,nroot=0, contamination=0,seed) {
+               stoppingCriteria=round(iterations/10), parthenogenesis=2,nroot=0, contamination=0) {
 
   
   ##############################
@@ -71,8 +61,7 @@ gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutati
     return(out)
   }
   ## /end of phylo_cross
-  
-  
+
   
   ## Calculate fitness of phylogeny
   fit_phylogeny<-function(input) {
@@ -211,9 +200,7 @@ gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutati
   
   library(GA)
   library(compiler)
-  library(graph)
-  library(heatmap.plus)
-  library(png)
+
   
   # Get Observation File and associated values
   observation_matrix<-observations
@@ -231,12 +218,7 @@ gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutati
   ### Compile the genetic algorithm - this increases speed significantly
   setCompilerOptions(suppressAll=TRUE)
   ga=cmpfun(ga)
-  
-  ## Generate seed if missing
-  if (!missing(seed)){
-    set.seed(seed)
-  }
-  
+    
   ### RUN THE GENETIC ALGORITHM
   goo<-ga(type="binary", 
           fitness = fit_phylogeny, 
@@ -249,8 +231,7 @@ gaga<-function(observations, annotations, number_of_clones, pop_size=100, mutati
           pmutation=mutation_rate,
           maxiter=iterations,
           elitism = parthenogenesis,
-          run=stoppingCriteria,
-          seed=seed
+          run=stoppingCriteria
   )
   ## Add annotation to the object
   goo@names=as.character(annotations$names)
