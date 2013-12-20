@@ -20,7 +20,7 @@
 #' @export
 # @references GAGA paper here!
 #' @author Alex Murison \email{Alexander.Murison@@icr.ac.uk} and Christopher Wardell \email{Christopher.Wardell@@icr.ac.uk}
-#' @seealso \code{\link{ga-class}}, \code{\link{ga}}, \code{\link{gagaReport}}
+#' @seealso \code{\link{ga-class}}, \code{\link{ga}}, \code{\link{gaga}}
 #' @examples
 #' ## Load the included synthetic example data
 #' data("gaga_synthetic_data")
@@ -61,6 +61,7 @@ gagaReport<-function(gagaInput,gagaOutput,outType="complete",yRange=c(-250,0),ou
   
   ## Set observation matrix for heatmap
   observation_matrix = gagaInput
+  observation_matrix = gagaInput[,2:ncol(gagaInput)]
   
   ## Get number of mutations from gagaOutput
   number_of_mutations=length(gagaOutput@names)
@@ -112,12 +113,14 @@ gagaReport<-function(gagaInput,gagaOutput,outType="complete",yRange=c(-250,0),ou
     answers<-gagaOutput@solution[number_of_answers,]
     phylogeny_matrix<-generate_phylo_matrix(answers[1:number_of_clones],number_of_clones)
     phylogeny_matrix<-rbind(phylogeny_matrix, answers[1:number_of_clones])
-    #if(contamination==1) {cbind(phylogeny_matrix, c(-1)}
-    colnames(phylogeny_matrix)=LETTERS[1:pseudo_number_of_clones]
+    if(contamination==1) {phylogeny_matrix=phylogeny_matrix[1:(nrow(phylogeny_matrix)-1),]}
+    #colnames(phylogeny_matrix)=LETTERS[1:pseudo_number_of_clones]
+    colnames(phylogeny_matrix)=LETTERS[1:number_of_clones]
     
+    ## Only the proportion_matrix needs to include the pseudo_proportion_of_clones
     proportion_matrix<-matrix(answers[(number_of_clones+1):((number_of_cases*pseudo_number_of_clones)+number_of_clones)], 
                               ncol=pseudo_number_of_clones, nrow=number_of_cases, byrow=TRUE)
-    colnames(proportion_matrix)=LETTERS[1:pseudo_number_of_clones]    
+    colnames(proportion_matrix)=LETTERS[1:pseudo_number_of_clones] 
     for (rows in 1:nrow(proportion_matrix)) {
       scale<-sum(proportion_matrix[rows,])
       proportion_matrix[rows,]<-proportion_matrix[rows,]/scale
@@ -126,7 +129,7 @@ gagaReport<-function(gagaInput,gagaOutput,outType="complete",yRange=c(-250,0),ou
     for (rows in 1:number_of_mutations) {
       presence_matrix[rows,]<-phylogeny_matrix[answers[((number_of_cases*pseudo_number_of_clones)+number_of_clones+rows)],]
     }
-    colnames(presence_matrix)=LETTERS[1:pseudo_number_of_clones]    
+    colnames(presence_matrix)=LETTERS[1:number_of_clones]
     
     ## Produce output text files only if outType is complete
     if(outType %in% c("complete")){

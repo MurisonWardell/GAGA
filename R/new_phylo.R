@@ -2,12 +2,14 @@
 new_phylo<-function(nroot,number_of_clones) {
   inp<-vector(length=number_of_clones)
   
-  if (nroot==1) { 
-    i<-1
-  } else { 
+  ## Maximum number of roots is the number of clones
+  nroot=min(nroot,number_of_clones) 
+  
+  ## When nroot is 0, we randomise the number of roots 
+  if (nroot==0) { 
     i<-round(runif(1,0.5, number_of_clones+0.49)) 
   }
-  
+    
   inp[1:i]<-0
   
   last_gen_start<-1

@@ -68,6 +68,6 @@ Christopher Wardell \email{Christopher.Wardell@icr.ac.uk}
 }
 \seealso{
 \code{\link{ga-class}}, \code{\link{ga}},
-\code{\link{gagaReport}}
+\code{\link{gaga}}
 }
 

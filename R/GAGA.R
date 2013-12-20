@@ -13,10 +13,12 @@
 #' @param mutation_rate             The likelihood of each individual undergoing mutation per generation
 #' @param iterations                The maximum number of generations to run
 #' @param stoppingCriteria          The number of consecutive generations without improvement that will stop the algorithm.
-#' Default value is 10\% of iterations.
+#' Default value is 20\% of total number of iterations.
 #' @param parthenogenesis           The number of best-fitness individuals allowed to survive each generation
-#' @param nroot                     Number of roots the phylogeny is expected to have
-#' @param contamination             Is the input contaminated?  If set to 1, an extra clone is created in which to place inferred contaminants
+#' @param nroot                     Number of roots in phylogenies.  Either specify an integer equal to or less than the number of clones
+#' or 0.  When nroot=0, a random integer between 1 and the number of clones is generated for each phylogeny
+#' @param contamination             Is the input contaminated?  If set to 1, an extra (empty) clone is created which allows the sum of
+#' the clones to be less than 1.  Analagous to normal cell contamination in a cancer sample
 #' @details Do we need a details section?
 #' @return Returns an object of class ga \code{\link{ga-class}}.  Note that the number of clones and number of cases are 
 #' stored in the unused min and max slots of the output object.
@@ -34,8 +36,8 @@
 #' ## Output the solution in the current working directory
 #' gagaReport(gaga_synthetic_data,solution)
 
-gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, iterations=1000,
-               stoppingCriteria=round(iterations/10), parthenogenesis=2,nroot=0, contamination=0) {
+gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, iterations=3000,
+               stoppingCriteria=round(iterations/5), parthenogenesis=2,nroot=1, contamination=0) {
 
   
   ##############################
