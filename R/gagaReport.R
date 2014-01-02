@@ -179,7 +179,7 @@ gagaReport<-function(gagaInput,gagaOutput,outType="complete",yRange=c(-250,0),ou
       legend("center",LETTERS[1:pseudo_number_of_clones], pch = 15,
              col=colours,ncol=pseudo_number_of_clones,bty ="n",cex=1.5)
       par(old.par) # Put the old margins back
-      barplot(t(proportion_matrix),col=colours,border=NA,xlab="Sample name",ylab="Proportion of cells")
+      barplot(t(proportion_matrix),col=colours,border=NA,xlab="Time Point",ylab="Proportion of cells")
       layout(1) # Restore layout
       if(outType=="complete"){ dev.off() }
     }
