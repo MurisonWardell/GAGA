@@ -13,12 +13,11 @@
 #' @param mutation_rate             The likelihood of each individual undergoing mutation per generation
 #' @param iterations                The maximum number of generations to run
 #' @param stoppingCriteria          The number of consecutive generations without improvement that will stop the algorithm.
-#' Default value is 20\% of total number of iterations.
+#' Default value is 20\% of iterations.
 #' @param parthenogenesis           The number of best-fitness individuals allowed to survive each generation
-#' @param nroot                     Number of roots in phylogenies.  Either specify an integer equal to or less than the number of clones
-#' or 0.  When nroot=0, a random integer between 1 and the number of clones is generated for each phylogeny
-#' @param contamination             Is the input contaminated?  If set to 1, an extra (empty) clone is created which allows the sum of
-#' the clones to be less than 1.  Analagous to normal cell contamination in a cancer sample
+#' @param nroot                     Number of roots the phylogeny is expected to have.When nroot=0, a random integer between 1 and the number of clones is generated for each phylogeny
+#' @param contamination             Is the input contaminated?  If set to 1, an extra clone is created in which to place inferred contaminants
+#' @param check_validity            Unless set to false, eliminate any clones with no new mutations, disallow those clones. Increases computational overheads.
 #' @details Do we need a details section?
 #' @return Returns an object of class ga \code{\link{ga-class}}.  Note that the number of clones and number of cases are 
 #' stored in the unused min and max slots of the output object.
@@ -36,8 +35,8 @@
 #' ## Output the solution in the current working directory
 #' gagaReport(gaga_synthetic_data,solution)
 
-gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, iterations=3000,
-               stoppingCriteria=round(iterations/5), parthenogenesis=2,nroot=1, contamination=0) {
+gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, iterations=1000,
+               stoppingCriteria=round(iterations/5), parthenogenesis=2,nroot=0, contamination=0, check_validity=TRUE) {
 
   
   ##############################
@@ -51,6 +50,7 @@ gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, 
     n <- ncol(parents)
     children <- matrix(NA, nrow = 2, ncol = n)
     fitnessChildren <- rep(NA, 2)
+    # Here we make sure that the crossover cannot happen in the phylogeny
     crossOverPoint <- sample((number_of_clones+1):n, size = 1)
     if (crossOverPoint == 0) {
       children[1:2, ] <- parents[2:1, ]
@@ -66,12 +66,54 @@ gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, 
       children[2, ] <- c(parents[2, 1:crossOverPoint], parents[1, 
                                                                (crossOverPoint + 1):n])
       fitnessChildren <- NA
+      # Check this hasn't created empty clones
+      
+    }
+    if (check_validity) {
+      while (is_invalid(children[1,]) || is_invalid(children[2,])) {
+        crossOverPoint <- sample((number_of_clones+1):n, size = 1)
+        if (crossOverPoint == 0) {
+          children[1:2, ] <- parents[2:1, ]
+          fitnessChildren[1:2] <- fitness[2:1]
+        }
+        else if (crossOverPoint == n) {
+          children <- parents
+          fitnessChildren <- fitness
+        }
+        else {
+          children[1, ] <- c(parents[1, 1:crossOverPoint], parents[2, 
+                                                                   (crossOverPoint + 1):n])
+          children[2, ] <- c(parents[2, 1:crossOverPoint], parents[1, 
+                                                                   (crossOverPoint + 1):n])
+          fitnessChildren <- NA
+          # Check this hasn't created empty clones
+          
+        }
+      }
     }
     out <- list(children = children, fitness = fitnessChildren)
     return(out)
   }
   ## /end of phylo_cross
 
+  ## Check whether any of the clones have no new mutations
+  is_invalid<-function(input) {
+    
+    #Get the list of mutations
+    mutation_list<-input[((number_of_clones)+(pseudo_number_of_clones*number_of_cases)+1):length(input)]
+    
+    #multiply 1 by the number of mutations new to each clone
+    is_it_true<-1
+    for (current_clone in 1:number_of_clones) {    
+      is_it_true<-length(which(mutation_list==current_clone))*is_it_true
+    }
+    
+    #if the result is 0 then return TRUE (invalid) or return FALSE (valid)
+    if (is_it_true==0) { 
+      return(TRUE)
+    }    else {return(FALSE)}
+    
+  }
   
   ## Calculate fitness of phylogeny
   fit_phylogeny<-function(input) {
@@ -112,6 +154,7 @@ gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, 
     for (plink in 1:nrow(vals)) {
       tot_score<-tot_score+sum(abs(vals[plink,])) ## 62% of total load
     }
+    
     return(-1*tot_score)
     
   }
@@ -123,6 +166,11 @@ gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, 
     population <- matrix(NA, nrow = object@popSize, ncol = object@nBits)
     for (j in 1:object@popSize) {
       population[j, ] <- generate_phylogeny_aware_individual()
+      if (check_validity) {
+        while (is_invalid(population[j,])) {
+        population[j, ] <- generate_phylogeny_aware_individual()
+        }
+      }
     }
     return(population)
   }
@@ -190,7 +238,16 @@ gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, 
     else if (what == 2 ) {
       # Mutate a first_appears call
       where<-round(runif(1,((number_of_cases*pseudo_number_of_clones)+number_of_clones+0.5),length(victim_ready)))
-      victim_ready[where]<-round(runif(1,0.5,(number_of_clones+0.49)))  
+      old<-victim_ready[where]
+      victim_ready[where]<-round(runif(1,0.5,(number_of_clones+0.49)))
+      if (check_validity) {
+        while (is_invalid(victim_ready)) {
+          victim_ready[where]<-old
+          where<-round(runif(1,((number_of_cases*pseudo_number_of_clones)+number_of_clones+0.5),length(victim_ready)))
+          old<-victim_ready[where]
+          victim_ready[where]<-round(runif(1,0.5,(number_of_clones+0.49)))
+        }
+      }
     }
     
     # Return it
