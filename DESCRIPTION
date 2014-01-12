@@ -7,5 +7,7 @@ Authors@R: c(person("Alex", "Murison", role = c("aut",
     "cre"),email="Alexander.Murison@icr.ac.uk"),person("Christopher",
     "Wardell", role = c("aut", "cre"),email="Christopher.Wardell@icr.ac.uk"))
 Description: Using genetic algorithms to determine the relationship between
-    clones in cancer samples.
+    clones in heterogenous populations such as cancer samples.
+VignetteBuilder: knitr
+Suggests: knitr
 License: GPL-3

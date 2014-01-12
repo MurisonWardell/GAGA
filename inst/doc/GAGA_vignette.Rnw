@@ -1,0 +1,33 @@
+%\VignetteDepends{knitr}
+%\VignetteIndexEntry{An introduction to GAGA}
+%\VignetteCompiler{knitr}
+%\VignetteEngine{knitr::knitr}
+
+\documentclass{article}
+
+\begin{document}
+
+
+\title{An introduction to GAGA}
+\author{Christopher Wardell}
+\maketitle
+
+% this is a comment.
+Is this thing on?
+
+Introduction
+- why we wrote gaga, the type of input data (SNVs - and reference our papers) and the basic outputs (phylogenies, proportions and heatmap)
+
+How it works
+Overview of genetic algorithms and the string encoding each individual.
+
+Unsure whether to put this in how it works, probably best as an introduction in the worked examples:
+Discussion that you might get a different answer every time and that the number of clones is probably the most important variable.  The user MUST cycle through a number of clones and choose the lowest number of clones with the best answer.  INCLUDE SAMPLE CODE!
+
+Worked examples:
+1.) Synthetic data as a proof of principle.  Note the inclusion of the jittered data (explain the jitter) and show that it works]
+2.) The yeast data, as it's REAL data and has a definite answer
+3.) Perhaps include the data from the recent LM paper?
+
+
+\end{document}
