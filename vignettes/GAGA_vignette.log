@@ -1,7 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.12)  12 JAN 2014 17:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.14)  14 JAN 2014 17:06
 entering extended mode
 **GAGA_vignette.tex
-(C:\Users\Christopher\Documents\GAGA\vignettes\GAGA_vignette.tex
+
+(N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.t
+ex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -112,7 +114,7 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count90
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
+(C:\Users\cwardell\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -149,7 +151,20 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip43
 )
-(C:/PROGRA~1/R/R-30~1.2/share/texmf/tex/latex\Sweave.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count97
+\float@exts=\toks15
+\float@box=\box26
+\@float@everytoks=\toks16
+\@floatcapt=\box27
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\alltt.sty"
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 20.
+
+(C:/Users/cwardell/DOCUME~1/R/R-30~1.2/share/texmf/tex/latex\Sweave.sty
 Package: Sweave 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
@@ -171,21 +186,21 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-\Gread@gobject=\count97
+\Gread@gobject=\count98
 ))
 \Gin@req@height=\dimen107
 \Gin@req@width=\dimen108
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fancyvrb\fancyvrb.sty"
+(C:\Users\cwardell\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyvrb\fancyvrb.sty
 Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count98
+\FV@CodeLineNo=\count99
 \FV@InFile=\read1
-\FV@TabBox=\box26
-\c@FancyVerbLine=\count99
-\FV@StepNumber=\count100
+\FV@TabBox=\box28
+\c@FancyVerbLine=\count100
+\FV@StepNumber=\count101
 \FV@OutFile=\write3
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\textcomp.sty"
@@ -291,30 +306,39 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aer.fd"
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 ))))
-(C:\Users\Christopher\Documents\GAGA\vignettes\GAGA_vignette.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 13.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+(N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.a
+ux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 23.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 13.
-\AtBeginShipoutBox=\box27
-Package hyperref Info: Link coloring OFF on input line 13.
+LaTeX Font Info:    ... okay on input line 23.
+\AtBeginShipoutBox=\box29
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+Package hyperref Info: Link coloring ON on input line 23.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -322,79 +346,199 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count101
+\c@section@level=\count102
 )
-LaTeX Info: Redefining \ref on input line 13.
-LaTeX Info: Redefining \pageref on input line 13.
-LaTeX Info: Redefining \nameref on input line 13.
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
+LaTeX Info: Redefining \nameref on input line 23.
 
-(C:\Users\Christopher\Documents\GAGA\vignettes\GAGA_vignette.out)
-(C:\Users\Christopher\Documents\GAGA\vignettes\GAGA_vignette.out)
+(N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.o
+ut)
+(N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.o
+ut)
 \@outlinefile=\write4
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\cwardell\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count102
+\scratchcounter=\count103
 \scratchdimen=\dimen109
-\scratchbox=\box28
-\nofMPsegments=\count103
-\nofMParguments=\count104
-\everyMPshowfont=\toks15
-\MPscratchCnt=\count105
+\scratchbox=\box30
+\nofMPsegments=\count104
+\nofMParguments=\count105
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count106
 \MPscratchDim=\dimen110
-\MPnumerator=\count106
-\makeMPintoPDFobject=\count107
-\everyMPtoPDFconversion=\toks16
-) (C:\Users\Christopher\Documents\GAGA\vignettes\GAGA_vignette-concordance.tex)
+\MPnumerator=\count107
+\makeMPintoPDFobject=\count108
+\everyMPtoPDFconversion=\toks18
+)
+(N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette-c
+oncordance.tex)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 20.
+(Font)              <12> on input line 29.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 20.
+(Font)              <8> on input line 29.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 20.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 29.
+(Font)              <6> on input line 29.
+
+Overfull \hbox (3.69319pt too wide) in paragraph at lines 29--29
+ [][] 
+ []
+
+LaTeX Font Info:    Try loading font information for T1+aett on input line 35.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [1
+)
+Overfull \hbox (123.06906pt too wide) in paragraph at lines 44--45
+[]\T1/aer/m/n/10 The lat-est de-vel-op-ment ver-sion can be cloned from our Git
+Hub here: [][]https://github.com/MurisonWardell[][]
+ []
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(C:\Users\Christopher\Documents\GAGA\vignettes\GAGA_vignette.toc
+[1
+
+{C:/Users/cwardell/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.t
+oc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 3.
 )
 \tf@toc=\write5
- [2] [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 112.
+ [2] [3] [4]
+<gaga_simple_data_phylogeny.png, id=93, 932.48375pt x 619.31375pt>
+File: gaga_simple_data_phylogeny.png Graphic file (type png)
 
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
- (C:\Users\Christopher\Documents\GAGA\vignettes\GAGA_vignette.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 112.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
+<use gaga_simple_data_phylogeny.png>
+Package pdftex.def Info: gaga_simple_data_phylogeny.png used on input line 144.
+
+(pdftex.def)             Requested size: 276.00105pt x 183.30077pt.
+
+<gaga_simple_data_heatmap.png, id=94, 932.48375pt x 619.31375pt>
+File: gaga_simple_data_heatmap.png Graphic file (type png)
+
+<use gaga_simple_data_heatmap.png>
+Package pdftex.def Info: gaga_simple_data_heatmap.png used on input line 150.
+(pdftex.def)             Requested size: 276.00105pt x 183.30077pt.
+ [5pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.154 
+       <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_sim
+ple_data_phylogeny.png>]
+<gaga_simple_data_proportions.png, id=101, 932.48375pt x 619.31375pt>
+File: gaga_simple_data_proportions.png Graphic file (type png)
+
+<use gaga_simple_data_proportions.png>
+Package pdftex.def Info: gaga_simple_data_proportions.png used on input line 15
+7.
+(pdftex.def)             Requested size: 276.00105pt x 183.30077pt.
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.164 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.164 
+       <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_sim
+ple_data_heatmap.png> <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vig
+nettes/gaga_simple_data_proportions.png>]
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 190
+.
+
+(C:/Users/cwardell/DOCUME~1/R/R-30~1.2/share/texmf/tex/latex\ts1aett.fd
+File: ts1aett.fd 
+)
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 190
+.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd"
+File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <10> not available
+(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 190.
+
+
+Overfull \hbox (152.79907pt too wide) in paragraph at lines 196--196
+[]     \T1/aett/m/n/10 x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x
+17 x18 x19 x20 x21 x22 x23 x24 x25[] 
+ []
+
+
+Overfull \hbox (152.79907pt too wide) in paragraph at lines 197--197
+[]\T1/aett/m/n/10 [1,]  0  1  2  2  4 29  0  0  0   0   8   0   3   5   0   0  
+ 0   6   2  12   1   2   4   3   5[] 
+ []
+
+<gaga_hidden_data_phylogeny.png, id=110, 728.7225pt x 619.31375pt>
+File: gaga_hidden_data_phylogeny.png Graphic file (type png)
+
+<use gaga_hidden_data_phylogeny.png>
+Package pdftex.def Info: gaga_hidden_data_phylogeny.png used on input line 213.
+
+(pdftex.def)             Requested size: 276.00105pt x 234.55733pt.
+ [7]
+<gaga_hidden_data_proportions.png, id=117, 728.7225pt x 619.31375pt>
+File: gaga_hidden_data_proportions.png Graphic file (type png)
+
+<use gaga_hidden_data_proportions.png>
+Package pdftex.def Info: gaga_hidden_data_proportions.png used on input line 21
+9.
+(pdftex.def)             Requested size: 276.00105pt x 234.55733pt.
+ [8pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.222 
+       <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_hid
+den_data_phylogeny.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 241.
+ [9pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.241 \end{document}
+                     <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vign
+ettes/gaga_hidden_data_proportions.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 241.
+
+(N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.a
+ux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 241.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 241.
 Package rerunfilecheck Info: File `GAGA_vignette.out' has not changed.
-(rerunfilecheck)             Checksum: 47FD62686430B726E7F081F216E02045;607.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 112.
+(rerunfilecheck)             Checksum: 89A671EBB1CED45E1A981470068F84F8;839.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 241.
  ) 
 Here is how much of TeX's memory you used:
- 6131 strings out of 493921
- 90807 string characters out of 3144858
- 159998 words of memory out of 3000000
- 9334 multiletter control sequences out of 15000+200000
- 26719 words of font info for 60 fonts, out of 3000000 for 9000
+ 6313 strings out of 493921
+ 94661 string characters out of 3144867
+ 165094 words of memory out of 3000000
+ 9478 multiletter control sequences out of 15000+200000
+ 27017 words of font info for 61 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 35i,6n,28p,282b,466s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
-rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Prog
-ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on GAGA_vignette.pdf (4 pages, 113777 bytes).
+ 35i,6n,28p,508b,467s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\cwardell\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
+00\tcst1000.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12
+.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pf
+b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pf
+b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+
+Output written on GAGA_vignette.pdf (9 pages, 172764 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
 
