@@ -213,21 +213,33 @@ gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, 
     what<-round(runif(1,0,2))
     if (what == 0) {
       # Mutate Proportions
-      # Randomly select a proportion
-      where<-round(runif(1,(number_of_clones+0.5),((number_of_cases*pseudo_number_of_clones)+number_of_clones+0.49)))
-      new<-victim_ready[where]
-      # if it's already 0 increase it by 1
-      if (new==0) {
-        new<-new+1
+      
+      ## We allow multiple mutations of the proportions string
+      proportion_mutations=round(runif(1,1,number_of_clones))
+      
+      for(proportion_mutation in 1:proportion_mutations){
+        # Randomly select a proportion
+        where<-round(runif(1,(number_of_clones+0.5),((number_of_cases*pseudo_number_of_clones)+number_of_clones+0.49)))
+        new<-victim_ready[where]
+        
+        ## Define what the increment or decrement will be:
+        decide_delta=runif(1,0,1)
+        if(decide_delta<=0.5){delta=1}
+        if(decide_delta>0.5 & decide_delta<0.8){delta=2}
+        if(decide_delta>=0.8){delta=3}
+        
+        # if proportion is already 0 you may ONLY increase it
+        if (new-delta<0) {
+          new<-new+delta
+        }else{ 
+          # Otherwise randomly increment or decrement by 1
+          do_what<-round(runif(1,0,1))
+          if (do_what==1) {new<-new+delta}
+          if (do_what==0) {new<-new-delta}
+        }
         victim_ready[where]<-new
-      }
-      else { 
-        # Otherwise randomly increment or decrement by 1
-        do_what<-round(runif(1,0,1))
-        if (do_what==1) {new<-new+1}
-        if (do_what==0) {new<-new-1}
-        victim_ready[where]<-new
-      }
+        
+      } # end of proportion_mutations loop
       
     }
     else if (what == 1 ) {

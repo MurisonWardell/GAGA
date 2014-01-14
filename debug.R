@@ -16,7 +16,7 @@ data("BYB1_G07_pruned")
 ## Execute gaga - good data, don't mess with it...
 #x=gaga(gaga_synthetic_data, gaga_synthetic_data_annotation, number_of_clones=6, iterations=20, contamination=0)
 #y=gaga(gaga_synthetic_data, gaga_synthetic_data_annotation, number_of_clones=6, iterations=10, contamination=0)
-gdata=gaga(gaga_synthetic_data, number_of_clones=6, iterations=3000)
+gdata=gaga(gaga_synthetic_data, number_of_clones=6, iterations=3000,nroot=1)
 gdataj=gaga(gaga_synthetic_data_jittered, number_of_clones=6, iterations=3000)
 gagaYeast=gaga(BYB1_G07_pruned, number_of_clones=6, iterations=1000)
 gagaYeastC=gaga(BYB1_G07_pruned, number_of_clones=6, iterations=1000,contamination=1)
