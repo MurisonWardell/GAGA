@@ -9,6 +9,13 @@
 \usepackage{hyperref} % For hyperlinks\
 \usepackage{float} % for floating images
 \usepackage{alltt} % for verbatim blocks of text
+\usepackage{xcolor} % to define custom colours
+
+\definecolor{icrgreen}{HTML}{C9DD03}
+\definecolor{icryellow}{HTML}{FFD602}
+\definecolor{icrorange}{HTML}{F9A100}
+\definecolor{icrpink}{HTML}{EE7EA6}
+\definecolor{icrred}{HTML}{A71930}
 
 % This block sets all links to be black and removes the hideous coloured boxes around them
 \hypersetup{
@@ -23,7 +30,14 @@
 \SweaveOpts{concordance=TRUE}
 
 \title{An introduction to GAGA}
-\author{Alex Murison and Christopher P Wardell, alex.murison@icr.ac.uk}
+%\author{Alex Murison and Christopher P Wardell \\ Alexander.Murison@icr.ac.uk, Christopher.Wardell@icr.ac.uk} % as single line
+\author{
+  Alex Murison\\
+  Alexander.Murison@icr.ac.uk
+  \and
+  Christopher P Wardell\\
+  Christopher.Wardell@icr.ac.uk
+}
 \maketitle
 
 This vignette serves as an introduction to the R package GAGA.  It covers the basic use cases and usage of the package, explaining the input and output and contains several worked examples.  If you use this package, please cite: (CITATION).
@@ -38,7 +52,7 @@ biocLite("GAGA")
 library(GAGA)
 @
 
-The latest development version can be cloned from our GitHub here: \href{https://github.com/MurisonWardell}{https://github.com/MurisonWardell} but must be built from source.
+The latest development version can be cloned from our GitHub:\\ \texttt{\href{https://github.com/MurisonWardell}{https://github.com/MurisonWardell}} but must be built from source.
 
 \pagebreak
 \tableofcontents
@@ -59,16 +73,76 @@ The SNV CCF values can be explained as a mixture of a number of related clones. 
 
 As these mixtures are the product of evolutionary processes it seemed appropriate to use genetic algorithms to infer their ancestry and composition.
 
-"Observation data frame where each row represents an SNV and each column (except the first) represents a discrete sample separated by time or space. Note that the first row is a header containing the name of each sample and the first column must contain a unique name for each SNV. Every value must be a proportion between 0 and 1"
-
 \subsection{Genetic algorithms}
-Overview of genetic algorithms... remove this section?
-\subsection{GAGA input}
-The main GAGA function (gaga()) requires an observation data frame as input.  Rows 
-\subsection{GAGA mutation function}
-\subsection{GAGA output}
+Genetic algorithms (GAs) are stochastic heuristic optimisation algorithms.  A population of potential solutions is generated and using a scoring function is compared to the observed data.  Solutions that best explain the observed data are allowed to reproduce with one another.  Reproduction allows both the recombination of solutions from different individuals and also the possibility of mutations.
 
-Discussion that you might get a different answer every time and that the number of clones is probably the most important variable.  The user MUST cycle through a number of clones and choose the lowest number of clones with the best answer.  INCLUDE SAMPLE CODE!
+GAs are particularly useful when a brute-force approach is undesirable or impractical, for example when the search space is very large.  An important consideration is that the search space may contain multiple solutions that exist as local minima and these may be difficult to escape, even with a high mutation rate.  \textbf{It is therefore imperative to run GAGA multiple times and select the best-scoring solution}.  Further details are discussed in the Advanced GAGA usage and best practices section of the worked examples.
+
+\subsection{GAGA input}
+The main GAGA function (\emph{gaga()}) requires a data frame of observations as input.  Each row represents an SNV and each column represents a discrete sample separated by time or space. Every value must be a value between 0 and 1 and represents the proportion of individuals that contain that SNV.
+
+\subsection{How GAGA encodes individuals and solutions}
+Every individual in the population is encoded as a character string.  Consider the following solution to an included data set.  It contains three clones and three SNVs.  The solution encodes a phylogeny, the proportion of each clone in each sample and the clone in which each SNV first occurred.  Let there be {\color{icrpink}s} samples and {\color{icrred}k} clones.
+\newline
+\newline
+{\raggedright{}\texttt{{\color{icrgreen}0  1  2 }{\color{icryellow} 5  0  0  3  7  0   0   1   4 }{\color{icrorange} 1   2   3 }}}
+\newline
+\newline
+\texttt{{\color{icrgreen}0  1  2 }}: The first {\color{icrred}k} characters encode the position in the phylogeny of each clone.  In this example, the first element is the root (hence 0), the second is descended from the first and third is descended from the second.  If the second and third clones were both descended from the first clone, the phylogeny would be \texttt{0 1 1}.
+\newline
+\newline
+\texttt{{\color{icryellow}5  0  0  3  7  0   0   1   4 }}: The next {\color{icrred}k}*{\color{icrpink}s} characters encode the proportions.  Each block of {\color{icrred}k} characters encodes the proportions of each clone for the {\color{icrpink}s}th sample.  Proportions are generated by dividing the numbers in the block by their sum.  This example is explained below:
+
+<<demontrate_proportions, eval=TRUE>>=
+## First sample is reprented by first block of three digits
+## First sample is 100% clone 1, 0% clone 2, 0% clone 3
+c(5,0,0)/sum(c(5,0,0))
+## Second sample is reprented by second block of three digits
+## Second sample is 30% clone 1, 70% clone 2, 0% clone 3
+c(3,7,0)/sum(c(3,7,0))
+## Third sample is reprented by third block of three digits
+## Third sample is 0% clone 1, 20% clone 2, 80% clone 3
+c(0,1,4)/sum(c(0,1,4))
+@
+
+\newline
+\newline
+{\raggedright{}\texttt{{\color{icrorange}1   2   3 }}: The final {\color{icrred}k} characters encodes the mutation matrix and the order of SNVs. In this example the first SNV occurred in clone 1 (and is inherited by its descendants), the second SNV occurred in clone 2 (and is inherited by its descendent) and SNV 3 occurred in clone 3.  If all SNVs occurred in clone 1, this string would be \texttt{1 1 1}.}
+
+\subsection{GAGA mutation function}
+The mutation function has been heavily modified in \texttt{GAGA} relative to the original in \texttt{GA}.  If an individual in the
+population undergoes mutation there is an equal chance of it occurring in the phylogeny, proportion of clones or mutation matrix 
+sections of the solution.
+
+A mutation in the phylogeny section results in a new phylogeny being randomly assigned to the individual. A mutation in the proportion
+section results in between 1 to {\color{icrred}k} increments or decrements to the assigned values.  This enhanced level of mutation
+is required to help individuals escape from local minima.  A mutation in the mutation matrix section results in a single value being randomly assigned to a new clone.
+
+Also, note that crosses between parents are not permitted in the phylogeny section of the solution.
+
+\subsection{GAGA output}
+The \texttt{gaga()} function returns an object of class \texttt{ga}.  Although this object can be interrogated manually, the easiest way to look at the results is to use the gagaReport() function.  The default output will produce the following files in the current working directory (where {\color{icrred}k}=number of clones, {\color{icrred}i}=number of solution and {\color{icrred}n}=total number of top-scoring solutions):
+
+\begin{enumerate}
+   \item png image: {\color{icrred}k}clones.solution{\color{icrred}i}of{\color{icrred}n}.phylogeny.png: the inferred phylogeny of the solution 
+   \item png image: {\color{icrred}k}clones.solution{\color{icrred}i}of{\color{icrred}n}.heatmap.png: a heatmap of the solution
+   \item png image: {\color{icrred}k}clones.solution{\color{icrred}i}of{\color{icrred}n}.proportions.png: a stacked barplot of the proportion of each clone that composes each sample
+   \item png image: {\color{icrred}k}clones.fitnessconvergence.png: the fitness convergence plot.  This can be used to ensure that GAGA is reaching convergence and being run for an appropriate number of generations
+   \item text file: {\color{icrred}k}clones.complete.solution{\color{icrred}i}of{\color{icrred}n}.txt: the solution encoded as a string
+   \item text file: {\color{icrred}k}clones.phylogeny.solution.{\color{icrred}i}of{\color{icrred}n}.txt: the phylogeny of the solution
+   encoded as a matrix.  Note that these matrices are not directly compatible with the \emph{graph} R package
+   \item text file: {\color{icrred}k}clones.mutation.matrix.{\color{icrred}i}of{\color{icrred}n}.txt: a binary matrix showing the
+   presence or absence of each SNV in each clone
+   \item text file: {\color{icrred}k}clones.proportions.solution.{\color{icrred}i}of{\color{icrred}n}.txt: the proportion of each 
+   clone that composes each sample
+\end{enumerate}
+
+Note that in the event of multiple solutions scoring equally well, files for up to the top five solutions will be produced.
+
+<<emit_results, eval=FALSE>>=
+## Write results to files
+gagaReport(gaga_input_dataframe,gaga_output_object)
+@
 
 
 \section{Worked examples}
@@ -202,9 +276,60 @@ gagaReport(gaga_simple_data,simpleDataSolution,outType="complete")
    \caption{The proportions of each clone in each sample of the hidden data set.  Although clone B is not present in any of the samples its existance and ancestry have been correctly inferred.}
 \end{figure}
 
-\subsection{Example 3 - complex synthetic data and noisy data}
-These synthetic data are close to the sort of observations produced by a typical tumour-normal paired exome sequencing experiment.  There are four time points (T0 to T3) and 90 mutations (gene1 to gene90).  Each of the values represents the proportion of cells that contain that mutation at that time point - the cancer cell fraction (CCF).
+\subsection{Example 3 - complex synthetic data and noisy synthetic data}
+These synthetic data are close to the sort of observations produced by a typical tumour-normal paired exome sequencing experiment.  There are four time points (T0 to T3) and 90 mutations (gene1 to gene90).  Each of the values represents the proportion of cells that contain that mutation at that time point - the cancer cell fraction (CCF).  {\color{red}We also include the same data set with added noise (HOW DID WE DO THIS - ASKED ALEX)}
 
+
+<<gaga_synthetic_data, eval=FALSE>>=
+## Load library
+library(GAGA)
+
+## Load synthetic data set and the same data with added jitter
+data("gaga_synthetic_data")
+data("gaga_synthetic_data_jittered") 
+
+## Execute gaga() function on the synthetic data set
+a=date()
+syntheticDataSolution=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+b=date()
+syntheticDataSolution1=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+c=date()
+syntheticDataSolution2=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+d=date()
+syntheticDataSolution3=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+e=date()
+syntheticDataSolution4=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+f=date()
+syntheticDataSolution5=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+g=date()
+syntheticDataSolution6=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+h=date()
+syntheticDataSolution7=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+i=date()
+syntheticDataSolution8=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+j=date()
+syntheticDataSolution9=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
+k=date()
+
+## Access solution slot in returned object to show highest scoring solution(s)
+## This solution's score is XXXXXXXXXXXXXXXXXXXX
+syntheticDataSolution@solution
+@
+% Note; this R code snippet isn't in a regular knitr code block on purpose to make it appear as if it has been run
+\begin{alltt}
+     x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19 x20 x21 x22 x23 x24 x25
+[1,]  0  1  2  2  4 29  0  0  0   0   8   0   3   5   0   0   0   6   2  12   1   2   4   3   5
+\end{alltt}
+
+<<gaga_hidden_data_results, eval=FALSE>>=
+## Produce plots for the phylogeny, heatmap and proportions in turn
+gagaReport(gaga_hidden_data,hiddenDataSolution,outType="phylogeny")
+gagaReport(gaga_hidden_data,hiddenDataSolution,outType="heatmap")
+gagaReport(gaga_hidden_data,hiddenDataSolution,outType="proportion")
+
+## Create output files representing the solution(s) in the current working directory
+gagaReport(gaga_simple_data,simpleDataSolution,outType="complete")
+@
 
 
 
@@ -216,8 +341,13 @@ The yeast data, as it's REAL data and has a (relatively) definite answer AND is 
 Perhaps include the data from the recent LM paper?
 \subsection{Advanced GAGA usage and best practices}
 Demonstrate proper usage; how to iterate over many clones and estimate how many clones there are, then performing many runs
+ and that the number of clones is probably the most important variable.  The user MUST cycle through a number of clones and choose the lowest number of clones with the best answer
 
+\section{Session Info}
+<<sessionInfo, eval=TRUE>>=
+sessionInfo()
+@
 
-
+\section{References}
 
 \end{document}

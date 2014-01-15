@@ -1,0 +1,1 @@
+gaga_synthetic_data=read.table("gaga_synthetic_data.txt",header=TRUE,row.names=1)

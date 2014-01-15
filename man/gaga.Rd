@@ -3,17 +3,16 @@
 \title{Genetic Algorithm for Generating Ancestry (GAGA)}
 \usage{
 gaga(observations, number_of_clones, pop_size = 100, mutation_rate = 0.8,
-  iterations = 3000, stoppingCriteria = round(iterations/5),
-  parthenogenesis = 2, nroot = 1, contamination = 0)
+  iterations = 1000, stoppingCriteria = round(iterations/5),
+  parthenogenesis = 2, nroot = 0, contamination = 0,
+  check_validity = TRUE)
 }
 \arguments{
   \item{observations}{Observation data frame where each row
-  represents an SNV and each column (except the first)
-  represents a discrete sample separated by time or space.
-  Note that the first row is a header containing the name
-  of each sample and the first column must contain a unique
-  name for each SNV.  Every value must be a proportion
-  between 0 and 1}
+  represents an SNV and each column represents a discrete
+  sample separated by time or space.  Note that the data
+  frame must have column names and row names. Every value
+  must be a proportion between 0 and 1}
 
   \item{number_of_clones}{An integer number of clones to be
   considered}
@@ -29,21 +28,22 @@ gaga(observations, number_of_clones, pop_size = 100, mutation_rate = 0.8,
 
   \item{stoppingCriteria}{The number of consecutive
   generations without improvement that will stop the
-  algorithm. Default value is 20\% of total number of
-  iterations.}
+  algorithm. Default value is 20\% of iterations.}
 
   \item{parthenogenesis}{The number of best-fitness
   individuals allowed to survive each generation}
 
-  \item{nroot}{Number of roots in phylogenies.  Either
-  specify an integer equal to or less than the number of
-  clones or 0.  When nroot=0, a random integer between 1
-  and the number of clones is generated for each phylogeny}
+  \item{nroot}{Number of roots the phylogeny is expected to
+  have.When nroot=0, a random integer between 1 and the
+  number of clones is generated for each phylogeny}
 
   \item{contamination}{Is the input contaminated?  If set
-  to 1, an extra (empty) clone is created which allows the
-  sum of the clones to be less than 1.  Analagous to normal
-  cell contamination in a cancer sample}
+  to 1, an extra clone is created in which to place
+  inferred contaminants}
+
+  \item{check_validity}{Unless set to false, eliminate any
+  clones with no new mutations, disallow those clones.
+  Increases computational overheads.}
 }
 \value{
 Returns an object of class ga \code{\link{ga-class}}.  Note

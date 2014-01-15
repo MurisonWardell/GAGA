@@ -61,7 +61,7 @@ gagaReport<-function(gagaInput,gagaOutput,outType="complete",yRange=c(-250,0),ou
   
   ## Set observation matrix for heatmap
   observation_matrix = gagaInput
-  observation_matrix = gagaInput[,2:ncol(gagaInput)]
+  #observation_matrix = gagaInput[,2:ncol(gagaInput)]
   
   ## Get number of mutations from gagaOutput
   number_of_mutations=length(gagaOutput@names)
@@ -188,7 +188,7 @@ gagaReport<-function(gagaInput,gagaOutput,outType="complete",yRange=c(-250,0),ou
     if(outType %in% c("complete","phylogeny")){
       message("Outputting phylogeny plot")
           
-      ## The phylogeny matrices are not compliant with Rgraphviz, so we edit them:
+      ## The phylogeny matrices are not compliant with "graph", so we edit them:
       ## 1.) We remove the bottom row (which is the original encoded string from the solution)
       pm=phylogeny_matrix[1:ncol(phylogeny_matrix),]
       ## 2.) Matrices must have 0 diag, sum(column)<=1, keeping the leftmost value

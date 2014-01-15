@@ -5,9 +5,9 @@
 #' relationships between clones them and the proportion of each clone that each sample is composed of.  For detailed usage, please
 #' read the accompanying vignette.
 #' 
-#' @param observations              Observation data frame where each row represents an SNV and each column (except the first) represents
-#' a discrete sample separated by time or space.  Note that the first row is a header containing the name of each sample and the first
-#' column must contain a unique name for each SNV.  Every value must be a proportion between 0 and 1
+#' @param observations              Observation data frame where each row represents an SNV and each column represents
+#' a discrete sample separated by time or space.  Note that the data frame must have column names and row names.  
+#' Every value must be a proportion between 0 and 1
 #' @param number_of_clones          An integer number of clones to be considered
 #' @param pop_size                  The number of individuals in each generation
 #' @param mutation_rate             The likelihood of each individual undergoing mutation per generation
@@ -282,7 +282,8 @@ gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, 
   
   ## Get Observation File and associated values
   ## We ignore the first column, as it is the object names
-  observation_matrix<-observations[,2:ncol(observations)] 
+  #observation_matrix<-observations[,2:ncol(observations)] 
+  observation_matrix<-observations
   number_of_mutations<-as.numeric(nrow(observation_matrix))
   number_of_cases<-as.numeric(ncol(observation_matrix))
 
@@ -313,7 +314,8 @@ gaga<-function(observations, number_of_clones, pop_size=100, mutation_rate=0.8, 
           run=stoppingCriteria
   )
   ## Add annotation to the object
-  goo@names=as.character(observations[,1])
+  #goo@names=as.character(observations[,1])
+  goo@names=rownames(observations)
     
   ## Add number of clones to min slot.  Note that this is an incorrect use of the slot
   goo@min = number_of_clones
