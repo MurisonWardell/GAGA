@@ -3,14 +3,20 @@
 %\VignetteCompiler{knitr}
 %\VignetteEngine{knitr::knitr}
 
-\documentclass{article}
+\documentclass[a4paper]{article}
 
 % LaTeX packages 
 \usepackage{hyperref} % For hyperlinks\
 \usepackage{float} % for floating images
 \usepackage{alltt} % for verbatim blocks of text
 \usepackage{xcolor} % to define custom colours
+\usepackage{a4wide} % gives us wider pages
+\usepackage[backend=bibtex]{biblatex} % bibliography package
 
+% Setting up bibliography
+\bibliography{gaga_bib}
+
+% Define a few custom colours
 \definecolor{icrgreen}{HTML}{C9DD03}
 \definecolor{icryellow}{HTML}{FFD602}
 \definecolor{icrorange}{HTML}{F9A100}
@@ -27,7 +33,6 @@
 }
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
 
 \title{An introduction to GAGA}
 %\author{Alex Murison and Christopher P Wardell \\ Alexander.Murison@icr.ac.uk, Christopher.Wardell@icr.ac.uk} % as single line
@@ -40,7 +45,9 @@
 }
 \maketitle
 
-This vignette serves as an introduction to the R package GAGA.  It covers the basic use cases and usage of the package, explaining the input and output and contains several worked examples.  If you use this package, please cite: (CITATION).
+This vignette serves as an introduction to the R package GAGA.  It covers the basic use cases and usage of the package, explaining the input and output and contains several worked examples.  If you use this package, please cite:
+
+\cite{yeast}
 
 \paragraph{Installation:} The latest stable version can be installed from Bioconductor here...
  
@@ -207,20 +214,20 @@ You should see images like those below.  The colours used for clones are consist
 
 \begin{figure}[H]
     \centering
-    \includegraphics{gaga_simple_data_phylogeny.png}
+    \includegraphics[width=\textwidth]{gaga_simple_data_phylogeny.png}
     \caption{The phylogeny of the optimum solution to the simple data set.  There is a single root (clone A) which gives rise to clone B which gives rise to clone C.}
 \end{figure}
 
 \begin{figure}[H]
    \centering
-       \includegraphics{gaga_simple_data_heatmap}
+       \includegraphics[width=\textwidth]{gaga_simple_data_heatmap}
    \caption{The input data has been clustered using the heatmap.plus package.  The colour scale goes from blue (low values) through yellow to red (high values).
    The coloured sidebar shows which clones contain which mutations.  For example, M1 is contained by all clones, whereas M3 is contained only by clone C.}
 \end{figure}
 
 \begin{figure}[H]
    \centering
-       \includegraphics{gaga_simple_data_proportions}
+       \includegraphics[width=\textwidth]{gaga_simple_data_proportions}
    \caption{The proportions of each clone in each sample of the simple data set.  Sample T0 is composed entirely of clone A, whereas sample T1 is an unequal mixture of 
    clones A and B, while sample T2 is an unequal mixture of clones B and C.}
 \end{figure}
@@ -266,19 +273,26 @@ gagaReport(gaga_simple_data,simpleDataSolution,outType="complete")
 
 \begin{figure}[H]
     \centering
-    \includegraphics{gaga_hidden_data_phylogeny.png}
+    \includegraphics[width=\textwidth]{gaga_hidden_data_phylogeny.png}
     \caption{The phylogeny of the optimum solution to the hidden data set.  Clone B is both the child of clone A and the parent of all other clones.}
 \end{figure}
 
 \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{gaga_hidden_data_heatmap.png}
+    \caption{Heatmap of the hidden data showing the mutation content of the clones.}
+\end{figure}
+
+\begin{figure}[H]
    \centering
-       \includegraphics{gaga_hidden_data_proportions}
+       \includegraphics[width=\textwidth]{gaga_hidden_data_proportions}
    \caption{The proportions of each clone in each sample of the hidden data set.  Although clone B is not present in any of the samples its existance and ancestry have been correctly inferred.}
 \end{figure}
 
 \subsection{Example 3 - complex synthetic data and noisy synthetic data}
-These synthetic data are close to the sort of observations produced by a typical tumour-normal paired exome sequencing experiment.  There are four time points (T0 to T3) and 90 mutations (gene1 to gene90).  Each of the values represents the proportion of cells that contain that mutation at that time point - the cancer cell fraction (CCF).  {\color{red}We also include the same data set with added noise (HOW DID WE DO THIS - ASKED ALEX)}
+These synthetic data are close to the sort of observations produced by a typical tumour-normal paired exome sequencing experiment.  There are four time points (T0 to T3) and 90 mutations (gene1 to gene90).  Each of the values represents the proportion of cells that contain that mutation at that time point - the cancer cell fraction (CCF).  We also include a synthetic data set with noise added, as real-world data is never perfect.
 
+Note that this example considers a single run of the algorithm, but real use requires multiple runs.  See the Advanced GAGA usage and best practices section for details and sample code.
 
 <<gaga_synthetic_data, eval=FALSE>>=
 ## Load library
@@ -288,66 +302,81 @@ library(GAGA)
 data("gaga_synthetic_data")
 data("gaga_synthetic_data_jittered") 
 
-## Execute gaga() function on the synthetic data set
-a=date()
+## Execute gaga() function on the synthetic data set - we know that there are 6 clones and a single rooted tree
 syntheticDataSolution=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-b=date()
-syntheticDataSolution1=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-c=date()
-syntheticDataSolution2=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-d=date()
-syntheticDataSolution3=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-e=date()
-syntheticDataSolution4=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-f=date()
-syntheticDataSolution5=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-g=date()
-syntheticDataSolution6=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-h=date()
-syntheticDataSolution7=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-i=date()
-syntheticDataSolution8=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-j=date()
-syntheticDataSolution9=gaga(gaga_synthetic_data, number_of_clones=6, nroot=1,iterations=3000)
-k=date()
 
 ## Access solution slot in returned object to show highest scoring solution(s)
-## This solution's score is XXXXXXXXXXXXXXXXXXXX
+## The optimum solution's score is -2.22E-15, which is a rounding error from zero
 syntheticDataSolution@solution
-@
-% Note; this R code snippet isn't in a regular knitr code block on purpose to make it appear as if it has been run
-\begin{alltt}
-     x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19 x20 x21 x22 x23 x24 x25
-[1,]  0  1  2  2  4 29  0  0  0   0   8   0   3   5   0   0   0   6   2  12   1   2   4   3   5
-\end{alltt}
-
-<<gaga_hidden_data_results, eval=FALSE>>=
-## Produce plots for the phylogeny, heatmap and proportions in turn
-gagaReport(gaga_hidden_data,hiddenDataSolution,outType="phylogeny")
-gagaReport(gaga_hidden_data,hiddenDataSolution,outType="heatmap")
-gagaReport(gaga_hidden_data,hiddenDataSolution,outType="proportion")
 
 ## Create output files representing the solution(s) in the current working directory
-gagaReport(gaga_simple_data,simpleDataSolution,outType="complete")
+gagaReport(gaga_synthetic_data,syntheticDataSolution)
 @
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{gaga_synthetic_data_phylogeny.png}
+    \caption{The phylogeny of the optimum solution to the synthetic data set.}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{gaga_synthetic_data_heatmap.png}
+    \caption{Heatmap of the synthetic data showing the mutation content of the clones.}
+\end{figure}
 
-JITTERED DATA
+\begin{figure}[H]
+   \centering
+       \includegraphics[width=\textwidth]{gaga_synthetic_data_proportions}
+       \caption{The proportions of each clone in each sample of the synthetic data set.}
+\end{figure}
 
 \subsection{Example 4}
-The yeast data, as it's REAL data and has a (relatively) definite answer AND is contaminated.
-\subsection{Example 5}
-Perhaps include the data from the recent LM paper?
+The final included data set and is important for several reasons:
+
+\begin{enumerate}
+   \item It's experimental, biological data from a published source \cite{yeast}
+   \item The publication suggests an optimum ("correct") solution
+   \item The input data is contaminated, so we can test the \texttt{contamination} parameter of \texttt{gaga()} 
+   \item The data is functionally identical to the sort of mutation data we see in tumour/normal paired sequencing experiments
+\end{enumerate}
+
+<<gaga_yeast_data, eval=FALSE>>=
+## Load library
+library(GAGA)
+
+## Load yeast data set
+data("BYB1_G07_pruned")
+
+## Execute gaga() function on the yeast data set
+## The paper claims that there are 6 clones with multiple roots
+yeastDataSolution=gaga(BYB1_G07_pruned, number_of_clones=6, iterations=3000)
+
+## Access solution slot in returned object to show highest scoring solution(s)
+## The optimum solution's score is XXXXXXXXXXXXXX
+yeastDataSolution@solution
+
+## Create output files representing the solution(s) in the current working directory
+gagaReport(BYB1_G07_pruned,yeastDataSolution)
+@
+
+Although solutions with 6 clones generally score the best, we found a subtly solution with 7 clones that explains the data even better.
+Therefore, the output of that solution is presented below.
+
+
 \subsection{Advanced GAGA usage and best practices}
 Demonstrate proper usage; how to iterate over many clones and estimate how many clones there are, then performing many runs
- and that the number of clones is probably the most important variable.  The user MUST cycle through a number of clones and choose the lowest number of clones with the best answer
+ and that the number of clones is probably the most important variable.  The user MUST cycle through a number of clones and choose the lowest number of clones with the best scoring solution.
+ 
+INCLUDE THE CONVERGENCE PLOTS FROM EXCEL.
 
 \section{Session Info}
 <<sessionInfo, eval=TRUE>>=
 sessionInfo()
 @
 
-\section{References}
+
+\printbibliography[heading=bibintoc] 
+
 
 \end{document}
