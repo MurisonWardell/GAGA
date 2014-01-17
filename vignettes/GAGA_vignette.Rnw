@@ -9,6 +9,7 @@
 \usepackage{hyperref} % For hyperlinks\
 \usepackage{float} % for floating images
 \usepackage{alltt} % for verbatim blocks of text
+\usepackage{verbatim} % to allow multi-line block comments
 \usepackage{xcolor} % to define custom colours
 \usepackage{a4wide} % gives us wider pages
 \usepackage[backend=bibtex]{biblatex} % bibliography package
@@ -313,25 +314,37 @@ syntheticDataSolution@solution
 gagaReport(gaga_synthetic_data,syntheticDataSolution)
 @
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{gaga_synthetic_data_phylogeny.png}
-    \caption{The phylogeny of the optimum solution to the synthetic data set.}
-\end{figure}
+% Leave the original images commented out for now; the images from the paper are much better
+\begin{comment}
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{gaga_synthetic_data_phylogeny.png}
+      \caption{The phylogeny of the optimum solution to the synthetic data set.}
+  \end{figure}
+  
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{gaga_synthetic_data_heatmap.png}
+      \caption{Heatmap of the synthetic data showing the mutation content of the clones.}
+  \end{figure}
+  
+  \begin{figure}[H]
+     \centering
+         \includegraphics[width=\textwidth]{gaga_synthetic_data_proportions}
+         \caption{The proportions of each clone in each sample of the synthetic data set.}
+  \end{figure}
+\end{comment}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{gaga_synthetic_data_heatmap.png}
-    \caption{Heatmap of the synthetic data showing the mutation content of the clones.}
+    \includegraphics[width=\textwidth]{synthetic_abc.png}
+    \caption{The optimum solution for the synthetic data set.  A shows the relationship between the six clones with the mutations
+    that are gained in each clone labelled.  B shows the proportions of each sample that is composed by each clone.  C shows 
+    hierarchical clustering of the input data, with the corresponding clones for each mutation as a coloured side bar.}
 \end{figure}
 
-\begin{figure}[H]
-   \centering
-       \includegraphics[width=\textwidth]{gaga_synthetic_data_proportions}
-       \caption{The proportions of each clone in each sample of the synthetic data set.}
-\end{figure}
 
-\subsection{Example 4}
+\subsection{Example 4 - real experimental data with contamination}
 The final included data set and is important for several reasons:
 
 \begin{enumerate}
@@ -350,7 +363,7 @@ data("BYB1_G07_pruned")
 
 ## Execute gaga() function on the yeast data set
 ## The paper claims that there are 6 clones with multiple roots
-yeastDataSolution=gaga(BYB1_G07_pruned, number_of_clones=6, iterations=3000)
+yeastDataSolution=gaga(BYB1_G07_pruned, number_of_clones=6, contamination=1 iterations=3000)
 
 ## Access solution slot in returned object to show highest scoring solution(s)
 ## The optimum solution's score is XXXXXXXXXXXXXX
@@ -360,11 +373,51 @@ yeastDataSolution@solution
 gagaReport(BYB1_G07_pruned,yeastDataSolution)
 @
 
-Although solutions with 6 clones generally score the best, we found a subtly solution with 7 clones that explains the data even better.
-Therefore, the output of that solution is presented below.
+As expected, solutions with 6 clones (as suggested by the publication) score the highest as a group.  However, we found a subtly
+different solution with 7 clones that scored even higher.  Therefore, the output of that solution is presented below.
+
+% Leave the original images commented out for now; the images from the paper are much better
+\begin{comment}
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{BYB1_G07_phylogeny.png}
+      \caption{The phylogeny of the optimum solution to the BYB1_G07 data set containing 7 clones.}
+  \end{figure}
+  
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{BYB1_G07_heatmap.png}
+      \caption{Heatmap of the BYB1_G07 data showing the mutation content of the clones.}
+  \end{figure}
+  
+  \begin{figure}[H]
+     \centering
+         \includegraphics[width=\textwidth]{BYB1_G07_proportions}
+         \caption{The proportions of each clone in each sample of the BYB1_G07 data set. Note that clone H, which is not present
+         in either the phylogeny or heatmap, represents "contamination".  In this context, the contamination is yeast cells 
+         that contain none of the mutations that were measured.}
+  \end{figure}
+\end{comment}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{BYB1_G07_abc.png}
+    \caption{A high-scoring solution solution for the yeast data set composed of 7 clones.   A shows the reconstructed phylogeny
+    with each clone labelled with its associated mutations; inset is the 6 clone phylogeny described by Kernighan et al.  B shows
+    the proportions of each sample that is composed by each clone.  Note that clone H, which is not present
+    in either the phylogeny or heatmap, represents "contamination".  In this context, the contamination is yeast cells 
+    that contain none of the mutations that were measured.  C shows hierarchical clustering of the input data, with the
+    corresponding clones for each mutation as a coloured side bar.}
+\end{figure}
 
 
 \subsection{Advanced GAGA usage and best practices}
+We have covered the basic usage of GAGA using small data sets with simple phylogenies, larger data sets with complex phylogenies and finally we recapitulated 
+
+contamination
+mu
+
+\subsubsection{xyz}
 Demonstrate proper usage; how to iterate over many clones and estimate how many clones there are, then performing many runs
  and that the number of clones is probably the most important variable.  The user MUST cycle through a number of clones and choose the lowest number of clones with the best scoring solution.
  

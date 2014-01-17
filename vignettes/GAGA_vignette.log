@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.14)  16 JAN 2014 17:33
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.14)  17 JAN 2014 13:40
 entering extended mode
 **GAGA_vignette.tex
 
@@ -206,6 +206,12 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks16
 \@floatcapt=\box27
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks17
+\verbatim@line=\toks18
+\verbatim@in@stream=\read1
+)
 (C:\Users\cwardell\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
@@ -300,7 +306,7 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 \bibinitsep=\skip51
 \bibparsep=\skip52
 \bibhang=\skip53
-\blx@auxin=\read1
+\blx@auxin=\read2
 \blx@auxout=\write3
 \c@mincomprange=\count137
 \c@maxcomprange=\count138
@@ -428,7 +434,7 @@ Package biblatex Info: ... file 'biblatex.cfg' found.
 (C:\Users\cwardell\AppData\Roaming\MiKTeX\2.9\tex\latex\biblatex\biblatex.cfg
 File: biblatex.cfg 
 )))
-Package hyperref Info: Option `colorlinks' set `true' on input line 82.
+Package hyperref Info: Option `colorlinks' set `true' on input line 83.
  (C:\Users\cwardell\AppData\Roaming\MiKTeX\2.9\tex\latex\upquote\upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
@@ -445,20 +451,20 @@ File: english.lbx 2013/11/25 v2.8a biblatex localization (PK/JW/AB)
 
 (N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.a
 ux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
 
 (C:\Users\cwardell\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -467,15 +473,15 @@ LaTeX Font Info:    ... okay on input line 85.
 \scratchbox=\box28
 \nofMPsegments=\count218
 \nofMParguments=\count219
-\everyMPshowfont=\toks17
+\everyMPshowfont=\toks19
 \MPscratchCnt=\count220
 \MPscratchDim=\dimen114
 \MPnumerator=\count221
 \makeMPintoPDFobject=\count222
-\everyMPtoPDFconversion=\toks18
+\everyMPtoPDFconversion=\toks20
 )
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring ON on input line 85.
+Package hyperref Info: Link coloring ON on input line 86.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -484,9 +490,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count223
 )
-LaTeX Info: Redefining \ref on input line 85.
-LaTeX Info: Redefining \pageref on input line 85.
-LaTeX Info: Redefining \nameref on input line 85.
+LaTeX Info: Redefining \ref on input line 86.
+LaTeX Info: Redefining \pageref on input line 86.
+LaTeX Info: Redefining \nameref on input line 86.
 
 (N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.o
 ut)
@@ -502,20 +508,20 @@ Package biblatex Info: ... file 'GAGA_vignette.bbl' found.
 
 (N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.b
 bl)
-Package biblatex Info: Reference section=0 on input line 85.
-Package biblatex Info: Reference segment=0 on input line 85.
+Package biblatex Info: Reference section=0 on input line 86.
+Package biblatex Info: Reference segment=0 on input line 86.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 97.
+(Font)              <12> on input line 98.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 97.
+(Font)              <8> on input line 98.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 97.
+(Font)              <6> on input line 98.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 108.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 109.
 [1
 
 {C:/Users/cwardell/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
@@ -528,36 +534,23 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 )
 \tf@toc=\write5
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 147--157
+Underfull \hbox (badness 10000) in paragraph at lines 148--158
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--157
+Underfull \hbox (badness 10000) in paragraph at lines 148--158
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--157
+Underfull \hbox (badness 10000) in paragraph at lines 148--158
 
  []
 
 [3]
 
-Package xcolor Warning: Incompatible color definition on input line 159.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.188 \newline
-              
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+Package xcolor Warning: Incompatible color definition on input line 160.
 
 
 ! LaTeX Error: There's no line here to end.
@@ -572,130 +565,143 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.190 \newline
+              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 [4]
 
-Package xcolor Warning: Incompatible color definition on input line 223.
+Package xcolor Warning: Incompatible color definition on input line 224.
 
 
-Package xcolor Warning: Incompatible color definition on input line 238.
+Package xcolor Warning: Incompatible color definition on input line 239.
 
 
-Package xcolor Warning: Incompatible color definition on input line 263.
+Package xcolor Warning: Incompatible color definition on input line 264.
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 276.
+Package xcolor Warning: Incompatible color definition on input line 277.
 
 
-Package xcolor Warning: Incompatible color definition on input line 302.
+Package xcolor Warning: Incompatible color definition on input line 303.
 
-<gaga_simple_data_phylogeny.png, id=122, 932.48375pt x 619.31375pt>
+<gaga_simple_data_phylogeny.png, id=127, 932.48375pt x 619.31375pt>
 File: gaga_simple_data_phylogeny.png Graphic file (type png)
 
 <use gaga_simple_data_phylogeny.png>
-Package pdftex.def Info: gaga_simple_data_phylogeny.png used on input line 325.
+Package pdftex.def Info: gaga_simple_data_phylogeny.png used on input line 326.
 
 (pdftex.def)             Requested size: 424.58624pt x 281.98665pt.
  [6]
-<gaga_simple_data_heatmap.png, id=127, 932.48375pt x 619.31375pt>
+<gaga_simple_data_heatmap.png, id=132, 932.48375pt x 619.31375pt>
 File: gaga_simple_data_heatmap.png Graphic file (type png)
 
 <use gaga_simple_data_heatmap.png>
-Package pdftex.def Info: gaga_simple_data_heatmap.png used on input line 331.
+Package pdftex.def Info: gaga_simple_data_heatmap.png used on input line 332.
 (pdftex.def)             Requested size: 424.58624pt x 281.98665pt.
  [7pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.335 
+l.336 
        <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_sim
 ple_data_phylogeny.png>]
-<gaga_simple_data_proportions.png, id=135, 932.48375pt x 619.31375pt>
+<gaga_simple_data_proportions.png, id=140, 932.48375pt x 619.31375pt>
 File: gaga_simple_data_proportions.png Graphic file (type png)
 
 <use gaga_simple_data_proportions.png>
 Package pdftex.def Info: gaga_simple_data_proportions.png used on input line 33
-8.
+9.
 (pdftex.def)             Requested size: 424.58624pt x 281.98665pt.
  [8pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.342 
+l.343 
        <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_sim
 ple_data_heatmap.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 347.
+Package xcolor Warning: Incompatible color definition on input line 348.
 
 
-Package xcolor Warning: Incompatible color definition on input line 372.
+Package xcolor Warning: Incompatible color definition on input line 373.
 
 [9pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.382 \end{kframe}
+l.383 \end{kframe}
                    <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignet
 tes/gaga_simple_data_proportions.png>]
-Overfull \hbox (74.15941pt too wide) in paragraph at lines 387--387
+Overfull \hbox (74.15941pt too wide) in paragraph at lines 388--388
 []     \OT1/cmtt/m/n/10 x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 
 x17 x18 x19 x20 x21 x22 x23 x24 x25[] 
  []
 
 
-Overfull \hbox (74.15941pt too wide) in paragraph at lines 388--388
+Overfull \hbox (74.15941pt too wide) in paragraph at lines 389--389
 []\OT1/cmtt/m/n/10 [1,]  0  1  2  2  4 29  0  0  0   0   8   0   3   5   0   0 
   0   6   2  12   1   2   4   3   5[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 392.
+Package xcolor Warning: Incompatible color definition on input line 393.
 
-<gaga_hidden_data_phylogeny.png, id=148, 728.7225pt x 619.31375pt>
+<gaga_hidden_data_phylogeny.png, id=153, 728.7225pt x 619.31375pt>
 File: gaga_hidden_data_phylogeny.png Graphic file (type png)
 
 <use gaga_hidden_data_phylogeny.png>
-Package pdftex.def Info: gaga_hidden_data_phylogeny.png used on input line 409.
+Package pdftex.def Info: gaga_hidden_data_phylogeny.png used on input line 410.
 
 (pdftex.def)             Requested size: 424.58624pt x 360.83707pt.
  [10]
-<gaga_hidden_data_heatmap.png, id=153, 728.7225pt x 619.31375pt>
+<gaga_hidden_data_heatmap.png, id=158, 728.7225pt x 619.31375pt>
 File: gaga_hidden_data_heatmap.png Graphic file (type png)
 
 <use gaga_hidden_data_heatmap.png>
-Package pdftex.def Info: gaga_hidden_data_heatmap.png used on input line 415.
+Package pdftex.def Info: gaga_hidden_data_heatmap.png used on input line 416.
 (pdftex.def)             Requested size: 424.58624pt x 360.83707pt.
  [11pdfTeX warning (ext4): destination with the same identifier (name{figure.4}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.418 
+l.419 
        <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_hid
 den_data_phylogeny.png>]
-<gaga_hidden_data_proportions.png, id=160, 728.7225pt x 619.31375pt>
+<gaga_hidden_data_proportions.png, id=165, 728.7225pt x 619.31375pt>
 File: gaga_hidden_data_proportions.png Graphic file (type png)
 
 <use gaga_hidden_data_proportions.png>
 Package pdftex.def Info: gaga_hidden_data_proportions.png used on input line 42
-1.
+2.
 (pdftex.def)             Requested size: 424.58624pt x 360.83707pt.
  [12pdfTeX warning (ext4): destination with the same identifier (name{figure.5}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.424 
+l.425 
        <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_hid
 den_data_heatmap.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 431.
+Package xcolor Warning: Incompatible color definition on input line 432.
 
 
-Overfull \hbox (5.91pt too wide) in paragraph at lines 442--442
+Overfull \hbox (5.91pt too wide) in paragraph at lines 443--443
 [][]\OT1/cmtt/m/n/10 syntheticDataSolution[] []=[] []gaga[][](gaga_synthetic_da
 ta,[] []number_of_clones[] []=[] []6[][],[] []nroot[] []=[] []1[][],[][] 
  []
@@ -705,78 +711,76 @@ ta,[] []number_of_clones[] []=[] []6[][],[] []nroot[] []=[] []1[][],[][]
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.454 \end{kframe}
+l.455 \end{kframe}
                    <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignet
 tes/gaga_hidden_data_proportions.png>]
-<gaga_synthetic_data_phylogeny.png, id=174, 481.8pt x 481.8pt>
-File: gaga_synthetic_data_phylogeny.png Graphic file (type png)
+<synthetic_abc.png, id=179, 659.1024pt x 185.0112pt>
+File: synthetic_abc.png Graphic file (type png)
+ <use synthetic_abc.png>
+Package pdftex.def Info: synthetic_abc.png used on input line 482.
+(pdftex.def)             Requested size: 424.58624pt x 119.18309pt.
 
-<use gaga_synthetic_data_phylogeny.png>
-Package pdftex.def Info: gaga_synthetic_data_phylogeny.png used on input line 4
-60.
-(pdftex.def)             Requested size: 424.58624pt x 424.59549pt.
 
-<gaga_synthetic_data_heatmap.png, id=175, 481.8pt x 481.8pt>
-File: gaga_synthetic_data_heatmap.png Graphic file (type png)
+Package xcolor Warning: Incompatible color definition on input line 500.
 
-<use gaga_synthetic_data_heatmap.png>
-Package pdftex.def Info: gaga_synthetic_data_heatmap.png used on input line 466
-.
-(pdftex.def)             Requested size: 424.58624pt x 424.59549pt.
- [14pdfTeX warning (ext4): destination with the same identifier (name{figure.7}
-) has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.469 
-       <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_syn
-thetic_data_phylogeny.png (PNG copy)>]
-<gaga_synthetic_data_proportions.png, id=181, 481.8pt x 481.8pt>
-File: gaga_synthetic_data_proportions.png Graphic file (type png)
+Overfull \hbox (58.40955pt too wide) in paragraph at lines 510--510
+[]\OT1/cmtt/m/n/10 yeastDataSolution=[]gaga[](BYB1_G07_pruned, number_of_clones
+=6, contamination=1 iterations=3000)[] 
+ []
 
-<use gaga_synthetic_data_proportions.png>
-Package pdftex.def Info: gaga_synthetic_data_proportions.png used on input line
- 472.
-(pdftex.def)             Requested size: 424.58624pt x 424.59549pt.
- [15pdfTeX warning (ext4): destination with the same identifier (name{figure.8}
-) has been already used, duplicate ignored
+
+Overfull \hbox (18.14603pt too wide) in paragraph at lines 516--516
+[][]\OT1/cmtt/m/it/10 ## Create output files representing the solution(s) in th
+e current working directory[][] 
+ []
+
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.475 
-       <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_syn
-thetic_data_heatmap.png (PNG copy)>] [16pdfTeX warning (ext4): destination with
- the same identifier (name{figure.9}) has been already used, duplicate ignored
+l.519 \end{kframe}
+                   <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignet
+tes/synthetic_abc.png>] <BYB1_G07_abc.png, id=192, 659.1024pt x 199.4652pt>
+File: BYB1_G07_abc.png Graphic file (type png)
+
+<use BYB1_G07_abc.png>
+Package pdftex.def Info: BYB1_G07_abc.png used on input line 551.
+(pdftex.def)             Requested size: 424.58624pt x 128.49426pt.
+
+
+Package xcolor Warning: Incompatible color definition on input line 575.
+
+[15pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.492 
-       <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignettes/gaga_syn
-thetic_data_proportions.png>]
-
-Package xcolor Warning: Incompatible color definition on input line 495.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 528.
-[17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 528.
+l.600 \end{kframe}
+                   <N:/MORGAN/ChrisW/documents/projects/131213_gaga/GAGA/vignet
+tes/BYB1_G07_abc.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 608.
+ [16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 608.
 
 (N:\MORGAN\ChrisW\documents\projects\131213_gaga\GAGA\vignettes\GAGA_vignette.a
 ux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 528.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 528.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 608.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 608.
 Package rerunfilecheck Info: File `GAGA_vignette.out' has not changed.
-(rerunfilecheck)             Checksum: B4501D68524117C72823CF3ABA9F3DF6;1052.
+(rerunfilecheck)             Checksum: AC80CA1B4E715A2AEE4BB5A9F05EF8AA;1160.
 Package logreq Info: Writing requests to 'GAGA_vignette.run.xml'.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 528.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 608.
  ) 
 Here is how much of TeX's memory you used:
- 10643 strings out of 493921
- 170075 string characters out of 3144867
- 362993 words of memory out of 3000000
- 13770 multiletter control sequences out of 15000+200000
+ 10665 strings out of 493921
+ 170279 string characters out of 3144867
+ 363624 words of memory out of 3000000
+ 13791 multiletter control sequences out of 15000+200000
  8577 words of font info for 31 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 37i,6n,49p,919b,860s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,6n,49p,919b,862s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:
@@ -785,9 +789,9 @@ ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Fi
 les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on GAGA_vignette.pdf (17 pages, 247302 bytes).
+Output written on GAGA_vignette.pdf (16 pages, 369738 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
- 59 named destinations out of 1000 (max. 500000)
- 166 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 244 PDF objects out of 1000 (max. 8388607)
+ 58 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 

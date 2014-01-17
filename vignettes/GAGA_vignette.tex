@@ -58,6 +58,7 @@
 \usepackage{hyperref} % For hyperlinks\
 \usepackage{float} % for floating images
 \usepackage{alltt} % for verbatim blocks of text
+\usepackage{verbatim} % to allow multi-line block comments
 \usepackage{xcolor} % to define custom colours
 \usepackage{a4wide} % gives us wider pages
 \usepackage[backend=bibtex]{biblatex} % bibliography package
@@ -455,40 +456,119 @@ Note that this example considers a single run of the algorithm, but real use req
 \end{knitrout}
 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{gaga_synthetic_data_phylogeny.png}
-    \caption{The phylogeny of the optimum solution to the synthetic data set.}
-\end{figure}
+% Leave the original images commented out for now; the images from the paper are much better
+\begin{comment}
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{gaga_synthetic_data_phylogeny.png}
+      \caption{The phylogeny of the optimum solution to the synthetic data set.}
+  \end{figure}
+  
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{gaga_synthetic_data_heatmap.png}
+      \caption{Heatmap of the synthetic data showing the mutation content of the clones.}
+  \end{figure}
+  
+  \begin{figure}[H]
+     \centering
+         \includegraphics[width=\textwidth]{gaga_synthetic_data_proportions}
+         \caption{The proportions of each clone in each sample of the synthetic data set.}
+  \end{figure}
+\end{comment}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{gaga_synthetic_data_heatmap.png}
-    \caption{Heatmap of the synthetic data showing the mutation content of the clones.}
+    \includegraphics[width=\textwidth]{synthetic_abc.png}
+    \caption{The optimum solution for the synthetic data set.  A shows the relationship between the six clones with the mutations
+    that are gained in each clone labelled.  B shows the proportions of each sample that is composed by each clone.  C shows 
+    hierarchical clustering of the input data, with the corresponding clones for each mutation as a coloured side bar.}
 \end{figure}
 
-\begin{figure}[H]
-   \centering
-       \includegraphics[width=\textwidth]{gaga_synthetic_data_proportions}
-       \caption{The proportions of each clone in each sample of the synthetic data set.}
-\end{figure}
 
-\subsection{Example 4}
+\subsection{Example 4 - real experimental data with contamination}
 The final included data set and is important for several reasons:
 
 \begin{enumerate}
    \item It's experimental, biological data from a published source \cite{yeast}
    \item The publication suggests an optimum ("correct") solution
    \item The input data is contaminated, so we can test the \texttt{contamination} parameter of \texttt{gaga()} 
-   \item The data is functionally identical to the sort of mutation data we see in tumour/normal pairs
+   \item The data is functionally identical to the sort of mutation data we see in tumour/normal paired sequencing experiments
 \end{enumerate}
 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## Load library}
+\hlkwd{library}(GAGA)
 
+\hlcom{## Load yeast data set}
+\hlkwd{data}(\hlstr{"BYB1_G07_pruned"})
+
+\hlcom{## Execute gaga() function on the yeast data set}
+\hlcom{## The paper claims that there are 6 clones with multiple roots}
+yeastDataSolution=\hlkwd{gaga}(BYB1_G07_pruned, number_of_clones=6, contamination=1 iterations=3000)
+
+\hlcom{## Access solution slot in returned object to show highest scoring solution(s)}
+\hlcom{## The optimum solution's score is XXXXXXXXXXXXXX}
+yeastDataSolution@solution
+
+\hlcom{## Create output files representing the solution(s) in the current working directory}
+\hlkwd{gagaReport}(BYB1_G07_pruned,yeastDataSolution)
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+As expected, solutions with 6 clones (as suggested by the publication) score the highest as a group.  However, we found a subtly
+different solution with 7 clones that scored even higher.  Therefore, the output of that solution is presented below.
+
+% Leave the original images commented out for now; the images from the paper are much better
+\begin{comment}
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{BYB1_G07_phylogeny.png}
+      \caption{The phylogeny of the optimum solution to the BYB1_G07 data set containing 7 clones.}
+  \end{figure}
+  
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{BYB1_G07_heatmap.png}
+      \caption{Heatmap of the BYB1_G07 data showing the mutation content of the clones.}
+  \end{figure}
+  
+  \begin{figure}[H]
+     \centering
+         \includegraphics[width=\textwidth]{BYB1_G07_proportions}
+         \caption{The proportions of each clone in each sample of the BYB1_G07 data set. Note that clone H, which is not present
+         in either the phylogeny or heatmap, represents "contamination".  In this context, the contamination is yeast cells 
+         that contain none of the mutations that were measured.}
+  \end{figure}
+\end{comment}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{BYB1_G07_abc.png}
+    \caption{A high-scoring solution solution for the yeast data set composed of 7 clones.   A shows the reconstructed phylogeny
+    with each clone labelled with its associated mutations; inset is the 6 clone phylogeny described by Kernighan et al.  B shows
+    the proportions of each sample that is composed by each clone.  Note that clone H, which is not present
+    in either the phylogeny or heatmap, represents "contamination".  In this context, the contamination is yeast cells 
+    that contain none of the mutations that were measured.  C shows hierarchical clustering of the input data, with the
+    corresponding clones for each mutation as a coloured side bar.}
+\end{figure}
 
 
 \subsection{Advanced GAGA usage and best practices}
+We have covered the basic usage of GAGA using small data sets with simple phylogenies, larger data sets with complex phylogenies and finally we recapitulated 
+
+contamination
+mu
+
+\subsubsection{xyz}
 Demonstrate proper usage; how to iterate over many clones and estimate how many clones there are, then performing many runs
  and that the number of clones is probably the most important variable.  The user MUST cycle through a number of clones and choose the lowest number of clones with the best scoring solution.
+ 
+INCLUDE THE CONVERGENCE PLOTS FROM EXCEL.
 
 \section{Session Info}
 \begin{knitrout}
